@@ -1,6 +1,6 @@
 export interface ThemeColor {
   name: string;
-  bg: string;
+  bg: string[];
   main: string;
   comment: string;
   accent: string;
@@ -8,8 +8,8 @@ export interface ThemeColor {
   success: string;
   error: string;
   warning: string;
-  buttonActive: string;
-  buttonDisabled: string;
+  buttonActive: string[];
+  buttonDisabled: string[];
   buttonTitleActive: string;
   buttonTitleDisabled: string;
   barStyle: 'dark-content' | 'light-content';

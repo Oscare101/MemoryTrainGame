@@ -3,7 +3,7 @@ import {ThemeColor, ThemeName} from './interfaces';
 export const colors: Record<ThemeName['value'], ThemeColor> = {
   olive: {
     name: 'Olive',
-    bg: '#768F7B',
+    bg: ['#768F7B', '#78987E'],
     main: '#333333',
     comment: '#ADADAD',
     accent: '#B6B654',
@@ -11,8 +11,8 @@ export const colors: Record<ThemeName['value'], ThemeColor> = {
     success: '#333333',
     error: '#AB3944',
     warning: '#ADADAD',
-    buttonActive: '#AB3944',
-    buttonDisabled: '#5F7463',
+    buttonActive: ['#333333', '#3C3C3C'],
+    buttonDisabled: ['#5F7463', '#5F7463'],
     buttonTitleActive: '#ADADAD',
     buttonTitleDisabled: '#C1D2C4',
     barStyle: 'dark-content',
