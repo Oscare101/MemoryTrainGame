@@ -7,11 +7,14 @@ import {
 } from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import {IconName} from '../../constants/interfaces';
+import Icon from '../icons/Icon';
 
 const width = Dimensions.get('screen').width;
 
 interface GradientButtonProps {
   title: string;
+  icon?: IconName['value'];
   bgColors: string[];
   titleColor: string;
   onPress: any;
@@ -23,7 +26,8 @@ export default function GradientButton(props: GradientButtonProps) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      style={[styles.button, {...props.cardStyle}]}>
+      style={[styles.button, {...props.cardStyle}]}
+      onPress={props.onPress}>
       <LinearGradient
         style={[styles.gradient, {...props.cardStyle}]}
         colors={props.bgColors}
@@ -37,6 +41,13 @@ export default function GradientButton(props: GradientButtonProps) {
           ]}>
           {props.title}
         </Text>
+        {props.icon && (
+          <Icon
+            name={props.icon}
+            size={width * 0.07}
+            color={props.titleColor}
+          />
+        )}
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -48,8 +59,10 @@ const styles = StyleSheet.create({
     paddingVertical: width * 0.04,
     paddingHorizontal: width * 0.08,
     borderRadius: width,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: width * 0.05,
   },
   title: {fontSize: width * 0.07},
 });

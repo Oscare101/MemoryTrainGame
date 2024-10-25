@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
     width: '100%',
-    paddingTop: width * 0.05,
     gap: width * 0.03,
   },
   quote: {

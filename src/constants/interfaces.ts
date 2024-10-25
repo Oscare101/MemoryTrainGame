@@ -23,9 +23,14 @@ export interface Language {
   value: 'UA';
 }
 
+export interface IconName {
+  value: 'play';
+}
+
 export interface TextInterface {
   quote: string;
   quoteAuthor: string;
+  Play: string;
 }
 
 export interface RulesInterface {
