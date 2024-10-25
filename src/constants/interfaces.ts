@@ -18,3 +18,12 @@ export interface ThemeColor {
 export interface ThemeName {
   value: 'olive';
 }
+
+export interface Language {
+  value: 'UA';
+}
+
+export interface TextInterface {
+  quote: string;
+  quoteAuthor: string;
+}
