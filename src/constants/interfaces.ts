@@ -27,3 +27,8 @@ export interface TextInterface {
   quote: string;
   quoteAuthor: string;
 }
+
+export interface RulesInterface {
+  widthPercentage: string;
+  widthNumber: number;
+}
