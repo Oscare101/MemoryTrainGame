@@ -24,16 +24,25 @@ export interface Language {
 }
 
 export interface IconName {
-  value: 'play';
+  value:
+    | 'play'
+    | 'chevronLeft'
+    | 'chevronRight'
+    | 'settings'
+    | 'statistics'
+    | 'easy'
+    | 'hard'
+    | 'fire';
+}
+
+export interface RulesInterface {
+  widthPercentage: string;
+  widthNumber: number;
 }
 
 export interface TextInterface {
   quote: string;
   quoteAuthor: string;
   Play: string;
-}
-
-export interface RulesInterface {
-  widthPercentage: string;
-  widthNumber: number;
+  NewGame: string;
 }

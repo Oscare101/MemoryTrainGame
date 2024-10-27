@@ -6,5 +6,6 @@ export const text: Record<Language['value'], TextInterface> = {
       '“Інтелектуальний ріст повинен починатися з народження і припинятися лише після смерті.”',
     quoteAuthor: 'Альберт Ейнштейн',
     Play: 'Грати',
+    NewGame: 'Нова гра',
   },
 };

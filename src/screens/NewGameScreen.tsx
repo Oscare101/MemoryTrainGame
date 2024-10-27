@@ -4,16 +4,20 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
 import {Language, ThemeName} from '../constants/interfaces';
 import {colors} from '../constants/colors';
 import {rules} from '../constants/rules';
+import {text} from '../constants/text';
+import Icon from '../components/icons/Icon';
+import Header from '../components/customs/Header';
 
 const width = Dimensions.get('screen').width;
 
-export default function NewGameScreen() {
+export default function NewGameScreen({navigation}: any) {
   const theme: ThemeName['value'] = 'olive';
   const language: Language['value'] = 'UA';
   return (
@@ -23,6 +27,10 @@ export default function NewGameScreen() {
         backgroundColor={colors[theme].bg[0]}
         barStyle={colors[theme].barStyle}
       />
+      <Header icon={'chevronLeft'} action={() => navigation.goBack()} />
+      <View>
+        <Text>{text[language].NewGame}</Text>
+      </View>
     </SafeAreaView>
   );
 }
@@ -32,7 +40,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: width * 0.05,
   },
   contentBlock: {
     width: width * rules.widthNumber,
