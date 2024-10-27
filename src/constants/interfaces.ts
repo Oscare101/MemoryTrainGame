@@ -45,4 +45,24 @@ export interface TextInterface {
   quoteAuthor: string;
   Play: string;
   NewGame: string;
+  options: {
+    easy: {
+      title: string;
+      description: string;
+      icon: IconName['value'];
+      type: 'easy' | 'hard' | 'stamina';
+    };
+    hard: {
+      title: string;
+      description: string;
+      icon: IconName['value'];
+      type: 'easy' | 'hard' | 'stamina';
+    };
+    stamina: {
+      title: string;
+      description: string;
+      icon: IconName['value'];
+      type: 'easy' | 'hard' | 'stamina';
+    };
+  };
 }

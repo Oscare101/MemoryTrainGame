@@ -1,15 +1,8 @@
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {IconName, ThemeName} from '../../constants/interfaces';
 import Icon from '../icons/Icon';
 import {colors} from '../../constants/colors';
-import {rules} from '../../constants/rules';
 
 interface HeaderProps {
   icon: IconName['value'];

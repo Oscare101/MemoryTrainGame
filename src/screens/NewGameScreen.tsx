@@ -4,7 +4,6 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
@@ -12,14 +11,15 @@ import {Language, ThemeName} from '../constants/interfaces';
 import {colors} from '../constants/colors';
 import {rules} from '../constants/rules';
 import {text} from '../constants/text';
-import Icon from '../components/icons/Icon';
 import Header from '../components/customs/Header';
+import RenderNewGameOptionItem from '../components/screenComponents/newGame/RenderNewGameOptionItem';
 
 const width = Dimensions.get('screen').width;
 
 export default function NewGameScreen({navigation}: any) {
   const theme: ThemeName['value'] = 'olive';
   const language: Language['value'] = 'UA';
+
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
@@ -28,8 +28,31 @@ export default function NewGameScreen({navigation}: any) {
         barStyle={colors[theme].barStyle}
       />
       <Header icon={'chevronLeft'} action={() => navigation.goBack()} />
-      <View>
-        <Text>{text[language].NewGame}</Text>
+      <View
+        style={{
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flex: 1,
+          width: width * rules.widthNumber,
+        }}>
+        <Text style={[styles.title, {color: colors[theme].main}]}>
+          {text[language].NewGame}
+        </Text>
+        <View
+          style={{
+            width: '100%',
+            gap: width * 0.03,
+            marginBottom: width * 0.1,
+          }}>
+          {Object.values(text[language].options).map((item: any) => (
+            <RenderNewGameOptionItem
+              key={item.type}
+              item={item}
+              theme={theme}
+            />
+          ))}
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -46,5 +69,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: width * 0.1,
+    marginTop: width * 0.15,
   },
 });

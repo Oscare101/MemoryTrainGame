@@ -13,8 +13,8 @@ export const colors: Record<ThemeName['value'], ThemeColor> = {
     warning: '#ADADAD',
     buttonActive: ['#333333', '#3C3C3C'],
     buttonDisabled: ['#5F7463', '#5F7463'],
-    buttonTitleActive: '#ADADAD',
-    buttonTitleDisabled: '#C1D2C4',
+    buttonTitleActive: '#C1D2C4',
+    buttonTitleDisabled: '#ADADAD',
     barStyle: 'dark-content',
   },
 };
