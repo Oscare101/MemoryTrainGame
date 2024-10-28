@@ -7,7 +7,12 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {Language, ThemeName} from '../constants/interfaces';
+import {
+  GameTypeInterface,
+  Language,
+  TextInterface,
+  ThemeName,
+} from '../constants/interfaces';
 import {colors} from '../constants/colors';
 import {rules} from '../constants/rules';
 import {text} from '../constants/text';
@@ -50,6 +55,9 @@ export default function NewGameScreen({navigation}: any) {
               key={item.type}
               item={item}
               theme={theme}
+              onPress={(type: GameTypeInterface['type']) => {
+                navigation.navigate('', {type: type});
+              }}
             />
           ))}
         </View>

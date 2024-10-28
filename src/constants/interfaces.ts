@@ -40,6 +40,10 @@ export interface RulesInterface {
   widthNumber: number;
 }
 
+export interface GameTypeInterface {
+  type: 'easy' | 'hard' | 'stamina';
+}
+
 export interface TextInterface {
   quote: string;
   quoteAuthor: string;
@@ -50,19 +54,19 @@ export interface TextInterface {
       title: string;
       description: string;
       icon: IconName['value'];
-      type: 'easy' | 'hard' | 'stamina';
+      type: GameTypeInterface['type'];
     };
     hard: {
       title: string;
       description: string;
       icon: IconName['value'];
-      type: 'easy' | 'hard' | 'stamina';
+      type: GameTypeInterface['type'];
     };
     stamina: {
       title: string;
       description: string;
       icon: IconName['value'];
-      type: 'easy' | 'hard' | 'stamina';
+      type: GameTypeInterface['type'];
     };
   };
 }
