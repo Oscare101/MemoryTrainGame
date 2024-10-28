@@ -14,6 +14,7 @@ interface GradientButtonProps {
   onPress: any;
   cardStyle?: any;
   titleStyle?: any;
+  disables?: boolean;
 }
 
 export default function GradientButton(props: GradientButtonProps) {
@@ -21,6 +22,7 @@ export default function GradientButton(props: GradientButtonProps) {
     <TouchableOpacity
       activeOpacity={0.8}
       style={[styles.button, {...props.cardStyle}]}
+      disabled={props.disables}
       onPress={props.onPress}>
       <LinearGradient
         style={[styles.gradient, {...props.cardStyle}]}

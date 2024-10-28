@@ -55,8 +55,8 @@ export default function NewGameScreen({navigation}: any) {
               key={item.type}
               item={item}
               theme={theme}
-              onPress={(type: GameTypeInterface['type']) => {
-                navigation.navigate('', {type: type});
+              onPress={(game: TextInterface['options']['easy']) => {
+                navigation.navigate('PreGameScreen', {game: game});
               }}
             />
           ))}

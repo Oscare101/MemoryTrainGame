@@ -32,12 +32,14 @@ export interface IconName {
     | 'statistics'
     | 'easy'
     | 'hard'
-    | 'fire';
+    | 'fire'
+    | 'infinity';
 }
 
 export interface RulesInterface {
   widthPercentage: string;
   widthNumber: number;
+  defaultWordsAmount: number;
 }
 
 export interface GameTypeInterface {
@@ -55,18 +57,25 @@ export interface TextInterface {
       description: string;
       icon: IconName['value'];
       type: GameTypeInterface['type'];
+      typeTitle: string;
     };
     hard: {
       title: string;
       description: string;
       icon: IconName['value'];
       type: GameTypeInterface['type'];
+      typeTitle: string;
     };
     stamina: {
       title: string;
       description: string;
       icon: IconName['value'];
       type: GameTypeInterface['type'];
+      typeTitle: string;
     };
   };
+  startWhenReady: string;
+  gamePreambula: string;
+  Start: string;
+  WordsAmount: string;
 }

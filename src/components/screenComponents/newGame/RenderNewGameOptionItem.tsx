@@ -18,12 +18,15 @@ export default function RenderNewGameOptionItem(props: {
         titleColor={colors[props.theme].buttonTitleActive}
         icon={props.item.icon}
         onPress={() => {
-          props.onPress(props.item.type);
+          props.onPress(props.item);
         }}
         cardStyle={{width: '100%', borderRadius: width * 0.04}}
       />
       <Text
-        style={{color: colors[props.theme].comment, fontSize: width * 0.042}}>
+        style={{
+          color: colors[props.theme].comment,
+          fontSize: width * 0.042,
+        }}>
         {props.item.description}
       </Text>
     </View>

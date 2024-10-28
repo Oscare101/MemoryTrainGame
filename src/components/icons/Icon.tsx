@@ -8,6 +8,7 @@ import StatisticIcon from './StatisticIcon';
 import FireIcon from './FireIcon';
 import EasyIcon from './EasyIcon';
 import HardIcon from './HardIcon';
+import InfinityIcon from './InfinityIcon';
 
 export default function Icon(props: {
   name: IconName['value'];
@@ -67,6 +68,13 @@ export default function Icon(props: {
     hard: (
       <SvgXml
         xml={HardIcon(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    infinity: (
+      <SvgXml
+        xml={InfinityIcon(props.color)}
         width={props.size}
         height={props.size}
       />
