@@ -1,10 +1,9 @@
 import {BackHandler, StatusBar, StyleSheet, Text, View} from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../components/customs/Header';
 import {colors} from '../constants/colors';
 import {Language, ThemeName} from '../constants/interfaces';
 import CloseGameModal from '../components/customs/CloseGameModal';
-import {useFocusEffect} from '@react-navigation/native';
 
 export default function GameScreen({navigation, route}: any) {
   const theme: ThemeName['value'] = 'olive';
