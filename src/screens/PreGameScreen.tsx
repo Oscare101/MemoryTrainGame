@@ -1,5 +1,5 @@
 import {Dimensions, StatusBar, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Language, ThemeName} from '../constants/interfaces';
 import Header from '../components/customs/Header';
 import {colors} from '../constants/colors';
@@ -8,6 +8,8 @@ import {rules} from '../constants/rules';
 import GradientButton from '../components/customs/GradientButton';
 import Icon from '../components/icons/Icon';
 import {TextInput} from 'react-native-gesture-handler';
+import {words} from '../constants/words';
+import Toast from 'react-native-toast-message';
 
 const width = Dimensions.get('screen').width;
 
@@ -18,6 +20,21 @@ export default function PreGameScreen({navigation, route}: any) {
   const [wordsAmount, setWordsAmount] = useState<string>(
     rules.defaultWordsAmount.toString(),
   );
+
+  useEffect(() => {
+    if (+wordsAmount > words[language].length) {
+      Toast.show({
+        type: 'ToastMessage',
+        props: {
+          title: text[language].wordsMaxWarning.replace(
+            '#',
+            words[language].length.toString(),
+          ),
+        },
+        position: 'top',
+      });
+    }
+  }, [wordsAmount]);
 
   return (
     <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
@@ -62,10 +79,15 @@ export default function PreGameScreen({navigation, route}: any) {
                 fontSize: width * 0.1,
                 height: width * 0.2,
                 width: width * 0.5,
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
               placeholder="0"
               placeholderTextColor={colors[theme].comment}
               keyboardType="number-pad"
+              selectionColor={
+                wordsAmount.length ? colors[theme].main : colors[theme].comment
+              }
             />
           )}
           <View

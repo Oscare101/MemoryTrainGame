@@ -78,4 +78,5 @@ export interface TextInterface {
   gamePreambula: string;
   Start: string;
   WordsAmount: string;
+  wordsMaxWarning: string;
 }
