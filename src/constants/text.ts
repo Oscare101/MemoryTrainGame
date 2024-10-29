@@ -39,5 +39,8 @@ export const text: Record<Language['value'], TextInterface> = {
     Start: 'Почати',
     WordsAmount: 'Кількість слів для вправи',
     wordsMaxWarning: 'Максимальна кількість слів доступна #',
+    CloseGameWarningTitle: 'Припинити гру',
+    CloseGameWarning:
+      'Ви точно хочете припинити гру?\nСпроба буде зарахована проте прогрес не збережеться',
   },
 };

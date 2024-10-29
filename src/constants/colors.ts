@@ -16,5 +16,7 @@ export const colors: Record<ThemeName['value'], ThemeColor> = {
     buttonTitleActive: '#C1D2C4',
     buttonTitleDisabled: '#ADADAD',
     barStyle: 'dark-content',
+    bgDim: '#47564A',
+    bgShadow: '#00000066',
   },
 };

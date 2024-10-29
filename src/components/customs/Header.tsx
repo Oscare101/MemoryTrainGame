@@ -21,7 +21,7 @@ export default function Header(props: HeaderProps) {
         onPress={props.action}
         style={styles.button}>
         <Icon
-          name="chevronLeft"
+          name={props.icon}
           size={width * 0.1}
           color={colors[theme].comment}
         />

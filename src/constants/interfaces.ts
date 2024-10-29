@@ -13,6 +13,8 @@ export interface ThemeColor {
   buttonTitleActive: string;
   buttonTitleDisabled: string;
   barStyle: 'dark-content' | 'light-content';
+  bgDim: string;
+  bgShadow: string;
 }
 
 export interface ThemeName {
@@ -33,7 +35,8 @@ export interface IconName {
     | 'easy'
     | 'hard'
     | 'fire'
-    | 'infinity';
+    | 'infinity'
+    | 'close';
 }
 
 export interface RulesInterface {
@@ -79,4 +82,6 @@ export interface TextInterface {
   Start: string;
   WordsAmount: string;
   wordsMaxWarning: string;
+  CloseGameWarning: string;
+  CloseGameWarningTitle: string;
 }

@@ -58,7 +58,6 @@ export default function MainNavigation() {
           headerLeft: () => null,
           animationEnabled: true,
           gestureDirection: 'horizontal',
-          gestureEnabled: true,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       />
