@@ -84,4 +84,6 @@ export interface TextInterface {
   wordsMaxWarning: string;
   CloseGameWarning: string;
   CloseGameWarningTitle: string;
+  goBack: string;
+  Stop: string;
 }

@@ -1,9 +1,10 @@
 import {BackHandler, StatusBar, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Header from '../components/customs/Header';
 import {colors} from '../constants/colors';
 import {Language, ThemeName} from '../constants/interfaces';
 import CloseGameModal from '../components/customs/CloseGameModal';
+import {useFocusEffect} from '@react-navigation/native';
 
 export default function GameScreen({navigation, route}: any) {
   const theme: ThemeName['value'] = 'olive';
@@ -13,9 +14,11 @@ export default function GameScreen({navigation, route}: any) {
 
   useEffect(() => {
     const backAction = () => {
-      if (true) {
+      if (modal) {
+        setModal(false);
+        return true;
+      } else {
         setModal(true);
-
         return true;
       }
     };
@@ -26,7 +29,7 @@ export default function GameScreen({navigation, route}: any) {
     );
 
     return () => backHandler.remove();
-  }, []);
+  }, [modal]);
 
   return (
     <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
@@ -45,7 +48,10 @@ export default function GameScreen({navigation, route}: any) {
         language={language}
         visible={modal}
         onClose={() => setModal(false)}
-        onSubmit={() => {}}
+        onSubmit={() => {
+          setModal(false);
+          navigation.goBack();
+        }}
       />
     </View>
   );
