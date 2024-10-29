@@ -10,6 +10,7 @@ import Icon from '../components/icons/Icon';
 import {TextInput} from 'react-native-gesture-handler';
 import {words} from '../constants/words';
 import Toast from 'react-native-toast-message';
+import {GetRandomWords} from '../functions/funtions';
 
 const width = Dimensions.get('screen').width;
 
@@ -156,9 +157,11 @@ export default function PreGameScreen({navigation, route}: any) {
             }
             icon={'play'}
             onPress={() => {
+              const wordsArray = GetRandomWords(words[language], +wordsAmount);
+
               navigation.navigate('GameScreen', {
                 type: route.params.game.type,
-                wordsAmount: +wordsAmount,
+                words: wordsArray,
               });
             }}
             cardStyle={{width: '100%', borderRadius: width * 0.04}}
