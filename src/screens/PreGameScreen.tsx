@@ -18,7 +18,9 @@ export default function PreGameScreen({navigation, route}: any) {
   const language: Language['value'] = 'UA';
 
   const [wordsAmount, setWordsAmount] = useState<string>(
-    rules.defaultWordsAmount.toString(),
+    route.params.game.type === 'stamina'
+      ? words[language].length.toString()
+      : rules.defaultWordsAmount.toString(),
   );
 
   useEffect(() => {
@@ -153,7 +155,12 @@ export default function PreGameScreen({navigation, route}: any) {
                 : colors[theme].buttonTitleActive
             }
             icon={'play'}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('GameScreen', {
+                type: route.params.game.type,
+                wordsAmount: +wordsAmount,
+              });
+            }}
             cardStyle={{width: '100%', borderRadius: width * 0.04}}
             disables={
               !wordsAmount.length || +wordsAmount > words[language].length

@@ -7,6 +7,7 @@ import {
 import HomeScreen from '../../screens/HomeScreen';
 import NewGameScreen from '../../screens/NewGameScreen';
 import PreGameScreen from '../../screens/PreGameScreen';
+import GameScreen from '../../screens/GameScreen';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,18 @@ export default function MainNavigation() {
       <Stack.Screen
         name="PreGameScreen"
         component={PreGameScreen}
+        options={{
+          headerShown: false,
+          headerLeft: () => null,
+          animationEnabled: true,
+          gestureDirection: 'horizontal',
+          gestureEnabled: true,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="GameScreen"
+        component={GameScreen}
         options={{
           headerShown: false,
           headerLeft: () => null,
