@@ -81,6 +81,10 @@ export default function PreGameScreen({navigation, route}: any) {
                 width: width * 0.5,
                 alignItems: 'center',
                 justifyContent: 'center',
+                color:
+                  +wordsAmount > words[language].length
+                    ? colors[theme].error
+                    : colors[theme].main,
               }}
               placeholder="0"
               placeholderTextColor={colors[theme].comment}
@@ -139,19 +143,21 @@ export default function PreGameScreen({navigation, route}: any) {
           <GradientButton
             title={text[language].Start}
             bgColors={
-              !wordsAmount.length
+              !wordsAmount.length || +wordsAmount > words[language].length
                 ? colors[theme].buttonDisabled
                 : colors[theme].buttonActive
             }
             titleColor={
-              !wordsAmount.length
+              !wordsAmount.length || +wordsAmount > words[language].length
                 ? colors[theme].buttonTitleDisabled
                 : colors[theme].buttonTitleActive
             }
             icon={'play'}
             onPress={() => {}}
             cardStyle={{width: '100%', borderRadius: width * 0.04}}
-            disables={!wordsAmount.length}
+            disables={
+              !wordsAmount.length || +wordsAmount > words[language].length
+            }
           />
           <Text
             style={{
