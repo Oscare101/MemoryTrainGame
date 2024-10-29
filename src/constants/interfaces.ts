@@ -36,7 +36,9 @@ export interface IconName {
     | 'hard'
     | 'fire'
     | 'infinity'
-    | 'close';
+    | 'close'
+    | 'correct'
+    | 'open';
 }
 
 export interface RulesInterface {

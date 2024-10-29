@@ -10,6 +10,8 @@ import EasyIcon from './EasyIcon';
 import HardIcon from './HardIcon';
 import InfinityIcon from './InfinityIcon';
 import CloseIcon from './CloseIcon';
+import CorrectIcon from './CorrectIcon';
+import OpenIcon from './OpenIcon';
 
 export default function Icon(props: {
   name: IconName['value'];
@@ -83,6 +85,20 @@ export default function Icon(props: {
     close: (
       <SvgXml
         xml={CloseIcon(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    correct: (
+      <SvgXml
+        xml={CorrectIcon(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    open: (
+      <SvgXml
+        xml={OpenIcon(props.color)}
         width={props.size}
         height={props.size}
       />

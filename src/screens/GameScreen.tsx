@@ -50,6 +50,7 @@ export default function GameScreen({navigation, route}: any) {
         onSubmit={() => {
           setModal(false);
           navigation.goBack();
+          // TODO save statistics
         }}
       />
     </View>
