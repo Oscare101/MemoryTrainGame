@@ -12,9 +12,6 @@ import {colors} from '../constants/colors';
 import {Language, ThemeName} from '../constants/interfaces';
 import CloseGameModal from '../components/customs/CloseGameModal';
 import CardNavigation from '../components/screenComponents/game/CardNavigation';
-import {rules} from '../constants/rules';
-import GradientButton from '../components/customs/GradientButton';
-import {text} from '../constants/text';
 import CheckBlock from '../components/screenComponents/game/CheckBlock';
 
 const width = Dimensions.get('screen').width;
@@ -81,20 +78,18 @@ export default function GameScreen({navigation, route}: any) {
         finishAvailable={finishAvailable}
         onCheck={() => {}}
       />
-      <View style={styles.block}>
-        <CardNavigation
-          theme={theme}
-          words={route.params.words}
-          type={route.paramstype}
-          wordIndex={wordIndex}
-          setWordIndex={(i: number) => {
-            if (i === route.params.words.length - 1) {
-              setFinishAvailable(true);
-            }
-            setWordIndex(i);
-          }}
-        />
-      </View>
+      <CardNavigation
+        theme={theme}
+        words={route.params.words}
+        type={route.paramstype}
+        wordIndex={wordIndex}
+        setWordIndex={(i: number) => {
+          if (i === route.params.words.length - 1) {
+            setFinishAvailable(true);
+          }
+          setWordIndex(i);
+        }}
+      />
 
       <CloseGameModal
         theme={theme}
@@ -116,12 +111,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  block: {
-    width: width * rules.widthNumber,
-    paddingBottom: width * 0.05,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
   },
 });

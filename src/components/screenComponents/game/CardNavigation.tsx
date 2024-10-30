@@ -9,6 +9,7 @@ import React from 'react';
 import {GameTypeInterface, ThemeName} from '../../../constants/interfaces';
 import Icon from '../../icons/Icon';
 import {colors} from '../../../constants/colors';
+import {rules} from '../../../constants/rules';
 
 const width = Dimensions.get('screen').width;
 
@@ -24,10 +25,11 @@ export default function CardNavigation(props: CardNavigationProps) {
   return (
     <View
       style={{
-        width: '100%',
+        width: width * rules.widthNumber,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        marginBottom: width * 0.05,
       }}>
       <TouchableOpacity
         style={styles.button}
