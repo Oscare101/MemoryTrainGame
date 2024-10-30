@@ -90,4 +90,6 @@ export interface TextInterface {
   CloseGameWarningTitle: string;
   goBack: string;
   Stop: string;
+  Check: string;
+  IfYouReadyToCheck: string;
 }
