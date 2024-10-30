@@ -59,10 +59,19 @@ export default function GameScreen({navigation, route}: any) {
           setModal(true);
         }}
       />
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+        }}>
+        <Text style={{fontSize: width * 0.1, color: colors[theme].main}}>
+          {route.params.words[wordIndex].charAt(0).toUpperCase() +
+            route.params.words[wordIndex].slice(1)}
+        </Text>
+      </View>
       <View style={styles.block}>
-        <View>
-          <Text>{route.params.words[wordIndex]}</Text>
-        </View>
         <View>
           <CardNavigation
             theme={theme}
@@ -95,5 +104,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  block: {width: width * rules.widthNumber, paddingBottom: width * 0.05},
+  block: {
+    width: width * rules.widthNumber,
+    paddingBottom: width * 0.05,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
 });

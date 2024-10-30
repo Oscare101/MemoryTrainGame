@@ -77,5 +77,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     aspectRatio: 1,
+    // TODO maybe make them bigger
   },
 });
