@@ -12,6 +12,8 @@ import InfinityIcon from './InfinityIcon';
 import CloseIcon from './CloseIcon';
 import CorrectIcon from './CorrectIcon';
 import OpenIcon from './OpenIcon';
+import ArrowLeftIcon from './ArrowLeftIcon';
+import ArrowRightIcon from './ArrowRightIcon';
 
 export default function Icon(props: {
   name: IconName['value'];
@@ -99,6 +101,20 @@ export default function Icon(props: {
     open: (
       <SvgXml
         xml={OpenIcon(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    arrowLeft: (
+      <SvgXml
+        xml={ArrowLeftIcon(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    arrowRight: (
+      <SvgXml
+        xml={ArrowRightIcon(props.color)}
         width={props.size}
         height={props.size}
       />

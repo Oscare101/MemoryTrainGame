@@ -4,12 +4,14 @@ import Header from '../components/customs/Header';
 import {colors} from '../constants/colors';
 import {Language, ThemeName} from '../constants/interfaces';
 import CloseGameModal from '../components/customs/CloseGameModal';
+import CardNavigation from '../components/screenComponents/game/CardNavigation';
 
 export default function GameScreen({navigation, route}: any) {
   const theme: ThemeName['value'] = 'olive';
   const language: Language['value'] = 'UA';
 
   const [modal, setModal] = useState<boolean>(false);
+  const [wordIndex, setWordIndex] = useState<number>(0);
 
   useEffect(() => {
     const backAction = () => {
@@ -42,6 +44,16 @@ export default function GameScreen({navigation, route}: any) {
           setModal(true);
         }}
       />
+      <View></View>
+      <View>
+        <CardNavigation
+          theme={theme}
+          words={route.params.words}
+          type={route.paramstype}
+          wordIndex={wordIndex}
+          setWordIndex={(i: number) => setWordIndex(i)}
+        />
+      </View>
       <CloseGameModal
         theme={theme}
         language={language}

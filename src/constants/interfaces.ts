@@ -38,7 +38,9 @@ export interface IconName {
     | 'infinity'
     | 'close'
     | 'correct'
-    | 'open';
+    | 'open'
+    | 'arrowLeft'
+    | 'arrowRight';
 }
 
 export interface RulesInterface {
