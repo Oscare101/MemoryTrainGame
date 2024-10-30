@@ -22,6 +22,7 @@ export default function GameScreen({navigation, route}: any) {
 
   const [modal, setModal] = useState<boolean>(false);
   const [wordIndex, setWordIndex] = useState<number>(0);
+  const [startTime, setStartTime] = useState<number>();
 
   useEffect(() => {
     const backAction = () => {
@@ -41,6 +42,10 @@ export default function GameScreen({navigation, route}: any) {
 
     return () => backHandler.remove();
   }, [modal]);
+
+  useEffect(() => {
+    setStartTime(new Date().getTime());
+  }, []);
 
   return (
     <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
