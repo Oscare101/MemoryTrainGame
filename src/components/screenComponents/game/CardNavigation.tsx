@@ -30,22 +30,52 @@ export default function CardNavigation(props: CardNavigationProps) {
         justifyContent: 'space-between',
       }}>
       <TouchableOpacity
-        style={{
-          width: width * 0.15,
-          alignItems: 'center',
-          justifyContent: 'center',
-          aspectRatio: 1,
-          backgroundColor: 'red',
-        }}>
+        style={styles.button}
+        activeOpacity={0.8}
+        onPress={() => {
+          if (props.wordIndex > 0) {
+            props.setWordIndex(props.wordIndex - 1);
+          }
+        }}
+        disabled={props.wordIndex === 0}>
         <Icon
-          name="chevronLeft"
+          name="arrowLeft"
           size={width * 0.1}
-          color={colors[props.theme].main}
+          color={props.wordIndex === 0 ? '#00000000' : colors[props.theme].main}
         />
       </TouchableOpacity>
-      <Text>CardNavigation</Text>
+      <Text
+        style={{fontSize: width * 0.075, color: colors[props.theme].comment}}>
+        {props.wordIndex + 1} / {props.words.length}
+      </Text>
+      <TouchableOpacity
+        style={styles.button}
+        activeOpacity={0.8}
+        onPress={() => {
+          if (props.wordIndex < props.words.length - 1) {
+            props.setWordIndex(props.wordIndex + 1);
+          }
+        }}
+        disabled={props.wordIndex === props.words.length - 1}>
+        <Icon
+          name="arrowRight"
+          size={width * 0.1}
+          color={
+            props.wordIndex === props.words.length - 1
+              ? '#00000000'
+              : colors[props.theme].main
+          }
+        />
+      </TouchableOpacity>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    width: width * 0.15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    aspectRatio: 1,
+  },
+});

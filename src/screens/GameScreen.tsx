@@ -1,10 +1,20 @@
-import {BackHandler, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {
+  BackHandler,
+  Dimensions,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../components/customs/Header';
 import {colors} from '../constants/colors';
 import {Language, ThemeName} from '../constants/interfaces';
 import CloseGameModal from '../components/customs/CloseGameModal';
 import CardNavigation from '../components/screenComponents/game/CardNavigation';
+import {rules} from '../constants/rules';
+
+const width = Dimensions.get('screen').width;
 
 export default function GameScreen({navigation, route}: any) {
   const theme: ThemeName['value'] = 'olive';
@@ -44,16 +54,21 @@ export default function GameScreen({navigation, route}: any) {
           setModal(true);
         }}
       />
-      <View></View>
-      <View>
-        <CardNavigation
-          theme={theme}
-          words={route.params.words}
-          type={route.paramstype}
-          wordIndex={wordIndex}
-          setWordIndex={(i: number) => setWordIndex(i)}
-        />
+      <View style={styles.block}>
+        <View>
+          <Text>{route.params.words[wordIndex]}</Text>
+        </View>
+        <View>
+          <CardNavigation
+            theme={theme}
+            words={route.params.words}
+            type={route.paramstype}
+            wordIndex={wordIndex}
+            setWordIndex={(i: number) => setWordIndex(i)}
+          />
+        </View>
       </View>
+
       <CloseGameModal
         theme={theme}
         language={language}
@@ -75,4 +90,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  block: {width: width * rules.widthNumber, paddingBottom: width * 0.05},
 });
