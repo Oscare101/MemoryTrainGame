@@ -14,6 +14,7 @@ import CloseGameModal from '../components/customs/CloseGameModal';
 import CardNavigation from '../components/screenComponents/game/CardNavigation';
 import CheckBlock from '../components/screenComponents/game/CheckBlock';
 import {text} from '../constants/text';
+import CardsListBlock from '../components/screenComponents/game/CardsListBlock';
 
 const width = Dimensions.get('screen').width;
 
@@ -66,10 +67,20 @@ export default function GameScreen({navigation, route}: any) {
         }
         secondaryAction={() => {
           setCardsShow(!cardsShow);
+          if (!cardsShow) {
+            setFinishAvailable(true);
+          }
         }}
       />
       {cardsShow ? (
-        <></>
+        <CardsListBlock
+          theme={theme}
+          wordsList={route.params.words}
+          onOpenCard={(index: number) => {
+            setWordIndex(index);
+            setCardsShow(false);
+          }}
+        />
       ) : (
         <View
           style={{
