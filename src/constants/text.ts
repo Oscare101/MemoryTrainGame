@@ -47,5 +47,7 @@ export const text: Record<Language['value'], TextInterface> = {
     Check: 'Перевірити',
     IfYouReadyToCheck:
       'Якщо ви вивчили всі слова і готові перейти до перевірки',
+    list: 'cписок',
+    backToCards: 'до карток',
   },
 };

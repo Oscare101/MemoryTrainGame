@@ -1,4 +1,10 @@
-import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {IconName, ThemeName} from '../../constants/interfaces';
 import Icon from '../icons/Icon';
@@ -7,6 +13,8 @@ import {colors} from '../../constants/colors';
 interface HeaderProps {
   icon: IconName['value'];
   action: any;
+  secondaryTitle?: string;
+  secondaryAction?: any;
 }
 
 const width = Dimensions.get('screen').width;
@@ -26,6 +34,18 @@ export default function Header(props: HeaderProps) {
           color={colors[theme].comment}
         />
       </TouchableOpacity>
+      {props.secondaryTitle ? (
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={styles.button}
+          onPress={props.secondaryAction}>
+          <Text style={{fontSize: width * 0.075, color: colors[theme].comment}}>
+            {props.secondaryTitle}
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <></>
+      )}
     </View>
   );
 }
@@ -35,7 +55,7 @@ const styles = StyleSheet.create({
     width: width,
     alignSelf: 'center',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     flexDirection: 'row',
   },
   button: {

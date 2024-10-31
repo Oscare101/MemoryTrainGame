@@ -92,4 +92,6 @@ export interface TextInterface {
   Stop: string;
   Check: string;
   IfYouReadyToCheck: string;
+  list: string;
+  backToCards: string;
 }

@@ -13,6 +13,7 @@ import {Language, ThemeName} from '../constants/interfaces';
 import CloseGameModal from '../components/customs/CloseGameModal';
 import CardNavigation from '../components/screenComponents/game/CardNavigation';
 import CheckBlock from '../components/screenComponents/game/CheckBlock';
+import {text} from '../constants/text';
 
 const width = Dimensions.get('screen').width;
 
@@ -24,6 +25,7 @@ export default function GameScreen({navigation, route}: any) {
   const [wordIndex, setWordIndex] = useState<number>(0);
   const [startTime, setStartTime] = useState<number>();
   const [finishAvailable, setFinishAvailable] = useState<boolean>(false);
+  const [cardsShow, setCardsShow] = useState<boolean>(false);
 
   useEffect(() => {
     const backAction = () => {
@@ -59,19 +61,30 @@ export default function GameScreen({navigation, route}: any) {
         action={() => {
           setModal(true);
         }}
+        secondaryTitle={
+          cardsShow ? text[language].backToCards : text[language].list
+        }
+        secondaryAction={() => {
+          setCardsShow(!cardsShow);
+        }}
       />
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-        }}>
-        <Text style={{fontSize: width * 0.1, color: colors[theme].main}}>
-          {route.params.words[wordIndex].charAt(0).toUpperCase() +
-            route.params.words[wordIndex].slice(1)}
-        </Text>
-      </View>
+      {cardsShow ? (
+        <></>
+      ) : (
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+          }}>
+          <Text style={{fontSize: width * 0.1, color: colors[theme].main}}>
+            {route.params.words[wordIndex].charAt(0).toUpperCase() +
+              route.params.words[wordIndex].slice(1)}
+          </Text>
+        </View>
+      )}
+
       <CheckBlock
         theme={theme}
         language={language}
