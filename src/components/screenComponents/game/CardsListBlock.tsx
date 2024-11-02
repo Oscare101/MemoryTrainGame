@@ -27,8 +27,12 @@ export default function CardsListBlock(props: CardListBlock) {
         <Text style={{fontSize: width * 0.06, color: colors[props.theme].main}}>
           {item.index + 1}
         </Text>
-        <Text style={{fontSize: width * 0.06, color: colors[props.theme].main}}>
-          {item.item}
+        <Text
+          style={{
+            fontSize: width * 0.06,
+            color: colors[props.theme].main,
+          }}>
+          {item.item.charAt(0).toUpperCase() + item.item.slice(1)}
         </Text>
         <TouchableOpacity
           activeOpacity={0.8}
