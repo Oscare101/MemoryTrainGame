@@ -104,7 +104,16 @@ export default function GameScreen({navigation, route}: any) {
         theme={theme}
         language={language}
         finishAvailable={finishAvailable}
-        onCheck={() => {}}
+        buttonTitle={text[language].Check}
+        comment={text[language].IfYouReadyToCheck}
+        onCheck={() => {
+          navigation.navigate('CheckScreen', {
+            start: startTime,
+            finish: new Date().getTime(),
+            words: route.params.words,
+            type: route.params.type,
+          });
+        }}
       />
       <View
         style={{

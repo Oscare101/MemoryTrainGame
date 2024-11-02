@@ -49,5 +49,13 @@ export const text: Record<Language['value'], TextInterface> = {
       'Якщо ви вивчили всі слова і готові перейти до перевірки',
     list: 'cписок',
     backToCards: 'до карток',
+    timeMemorizing: 'час запам’ятовування',
+    sec: 'сек',
+    min: 'хв',
+    hours: 'годин',
+    IfYouEnteredWords: 'Якщо ви ввели всі слова і готові завершити спробу',
+    Finish: 'Завершити',
+    ConfirmWarningTitle: 'Завершити спробу',
+    ConfirmWarning: 'Завершити спробу, навіть з наявними пустими полями',
   },
 };

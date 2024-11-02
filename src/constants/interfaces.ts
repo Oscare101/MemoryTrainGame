@@ -94,4 +94,12 @@ export interface TextInterface {
   IfYouReadyToCheck: string;
   list: string;
   backToCards: string;
+  timeMemorizing: string;
+  sec: string;
+  min: string;
+  hours: string;
+  IfYouEnteredWords: string;
+  Finish: string;
+  ConfirmWarningTitle: string;
+  ConfirmWarning: string;
 }

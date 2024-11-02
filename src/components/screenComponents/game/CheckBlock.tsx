@@ -12,6 +12,8 @@ interface CheckBlockProps {
   language: Language['value'];
   finishAvailable: boolean;
   onCheck: any;
+  buttonTitle: string;
+  comment: string;
 }
 
 export default function CheckBlock(props: CheckBlockProps) {
@@ -27,7 +29,7 @@ export default function CheckBlock(props: CheckBlockProps) {
         paddingTop: width * 0.1,
       }}>
       <GradientButton
-        title={text[props.language].Check}
+        title={props.buttonTitle}
         bgColors={
           !props.finishAvailable
             ? colors[props.theme].buttonDisabled
@@ -51,7 +53,7 @@ export default function CheckBlock(props: CheckBlockProps) {
           textAlign: 'center',
           marginTop: width * 0.05,
         }}>
-        {text[props.language].IfYouReadyToCheck}
+        {props.comment}
       </Text>
     </View>
   );
