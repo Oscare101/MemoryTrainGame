@@ -62,6 +62,7 @@ export default function GameScreen({navigation, route}: any) {
         action={() => {
           setModal(true);
         }}
+        secondary={route.params.type === 'easy'}
         secondaryTitle={
           cardsShow ? text[language].backToCards : text[language].list
         }

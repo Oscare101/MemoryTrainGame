@@ -13,6 +13,7 @@ import {colors} from '../../constants/colors';
 interface HeaderProps {
   icon: IconName['value'];
   action: any;
+  secondary?: boolean;
   secondaryTitle?: string;
   secondaryAction?: any;
 }
@@ -34,7 +35,7 @@ export default function Header(props: HeaderProps) {
           color={colors[theme].comment}
         />
       </TouchableOpacity>
-      {props.secondaryTitle ? (
+      {props.secondaryTitle && props.secondary ? (
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.button}
