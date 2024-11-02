@@ -15,6 +15,7 @@ import CardNavigation from '../components/screenComponents/game/CardNavigation';
 import CheckBlock from '../components/screenComponents/game/CheckBlock';
 import {text} from '../constants/text';
 import CardsListBlock from '../components/screenComponents/game/CardsListBlock';
+import {rules} from '../constants/rules';
 
 const width = Dimensions.get('screen').width;
 
@@ -103,19 +104,33 @@ export default function GameScreen({navigation, route}: any) {
         finishAvailable={finishAvailable}
         onCheck={() => {}}
       />
-      <CardNavigation
-        theme={theme}
-        words={route.params.words}
-        type={route.paramstype}
-        wordIndex={wordIndex}
-        setWordIndex={(i: number) => {
-          if (i === route.params.words.length - 1) {
-            setFinishAvailable(true);
-          }
-          setWordIndex(i);
-        }}
-        back={route.params.type === 'easy'}
-      />
+      <View
+        style={{
+          width: width * rules.widthNumber,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: width * 0.05,
+          height: width * 0.15,
+        }}>
+        {cardsShow ? (
+          <></>
+        ) : (
+          <CardNavigation
+            theme={theme}
+            words={route.params.words}
+            type={route.paramstype}
+            wordIndex={wordIndex}
+            setWordIndex={(i: number) => {
+              if (i === route.params.words.length - 1) {
+                setFinishAvailable(true);
+              }
+              setWordIndex(i);
+            }}
+            back={route.params.type === 'easy'}
+          />
+        )}
+      </View>
 
       <CloseGameModal
         theme={theme}

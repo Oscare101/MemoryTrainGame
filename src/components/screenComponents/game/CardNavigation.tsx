@@ -24,14 +24,7 @@ interface CardNavigationProps {
 
 export default function CardNavigation(props: CardNavigationProps) {
   return (
-    <View
-      style={{
-        width: width * rules.widthNumber,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: width * 0.05,
-      }}>
+    <>
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.8}
@@ -74,7 +67,7 @@ export default function CardNavigation(props: CardNavigationProps) {
           }
         />
       </TouchableOpacity>
-    </View>
+    </>
   );
 }
 
