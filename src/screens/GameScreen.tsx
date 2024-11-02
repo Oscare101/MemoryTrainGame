@@ -114,6 +114,7 @@ export default function GameScreen({navigation, route}: any) {
           }
           setWordIndex(i);
         }}
+        back={route.params.type === 'easy'}
       />
 
       <CloseGameModal

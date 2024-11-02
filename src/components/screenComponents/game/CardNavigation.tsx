@@ -19,6 +19,7 @@ interface CardNavigationProps {
   type: GameTypeInterface['type'];
   wordIndex: number;
   setWordIndex: any;
+  back: boolean;
 }
 
 export default function CardNavigation(props: CardNavigationProps) {
@@ -39,11 +40,15 @@ export default function CardNavigation(props: CardNavigationProps) {
             props.setWordIndex(props.wordIndex - 1);
           }
         }}
-        disabled={props.wordIndex === 0}>
+        disabled={!props.back || props.wordIndex === 0}>
         <Icon
           name="arrowLeft"
           size={width * 0.1}
-          color={props.wordIndex === 0 ? '#00000000' : colors[props.theme].main}
+          color={
+            props.wordIndex === 0 || !props.back
+              ? '#00000000'
+              : colors[props.theme].main
+          }
         />
       </TouchableOpacity>
       <Text
