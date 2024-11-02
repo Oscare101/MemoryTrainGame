@@ -119,7 +119,7 @@ export default function GameScreen({navigation, route}: any) {
           <CardNavigation
             theme={theme}
             words={route.params.words}
-            type={route.paramstype}
+            type={route.params.type}
             wordIndex={wordIndex}
             setWordIndex={(i: number) => {
               if (i === route.params.words.length - 1) {

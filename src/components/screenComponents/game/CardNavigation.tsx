@@ -44,10 +44,50 @@ export default function CardNavigation(props: CardNavigationProps) {
           }
         />
       </TouchableOpacity>
-      <Text
-        style={{fontSize: width * 0.075, color: colors[props.theme].comment}}>
-        {props.wordIndex + 1} / {props.words.length}
-      </Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <View>
+          <Text
+            style={{
+              fontSize: width * 0.075,
+              color: colors[props.theme].comment,
+              marginRight: width * 0.02,
+            }}>
+            {props.wordIndex + 1}
+          </Text>
+        </View>
+        <Text
+          style={{
+            fontSize: width * 0.075,
+            color: colors[props.theme].comment,
+            marginRight: width * 0.01,
+          }}>
+          /
+        </Text>
+        <View>
+          {props.type === 'stamina' ? (
+            <Icon
+              name="infinity"
+              color={colors[props.theme].comment}
+              size={width * 0.12}
+            />
+          ) : (
+            <Text
+              style={{
+                fontSize: width * 0.075,
+                color: colors[props.theme].comment,
+                marginLeft: width * 0.01,
+              }}>
+              {props.words.length}
+            </Text>
+          )}
+        </View>
+      </View>
+
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.8}
