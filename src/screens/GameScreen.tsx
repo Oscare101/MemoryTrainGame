@@ -26,7 +26,9 @@ export default function GameScreen({navigation, route}: any) {
   const [modal, setModal] = useState<boolean>(false);
   const [wordIndex, setWordIndex] = useState<number>(0);
   const [startTime, setStartTime] = useState<number>();
-  const [finishAvailable, setFinishAvailable] = useState<boolean>(false);
+  const [finishAvailable, setFinishAvailable] = useState<boolean>(
+    route.params.type === 'stamina' || false,
+  );
   const [cardsShow, setCardsShow] = useState<boolean>(false);
 
   useEffect(() => {
