@@ -19,13 +19,13 @@ const width = Dimensions.get('window').width;
 
 interface CloseModalProps {
   visible: boolean;
-  onClose: any;
-  onSubmit: any;
-  theme: ThemeName['value'];
-  language: Language['value'];
+  onClose: () => void;
+  onSubmit: () => void;
+  theme: ThemeName;
+  language: Language;
 }
 
-export default function CloseGameModal(props: CloseModalProps) {
+function CloseGameModal(props: CloseModalProps) {
   return (
     <Modal
       visible={props.visible}
@@ -133,3 +133,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
 });
+
+export default React.memo(CloseGameModal);

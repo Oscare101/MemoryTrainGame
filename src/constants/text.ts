@@ -1,6 +1,6 @@
 import {Language, TextInterface} from './interfaces';
 
-export const text: Record<Language['value'], TextInterface> = {
+export const text: Record<Language, TextInterface> = {
   UA: {
     quote:
       '“Інтелектуальний ріст повинен починатися з народження і припинятися лише після смерті.”',
@@ -52,7 +52,7 @@ export const text: Record<Language['value'], TextInterface> = {
     timeMemorizing: 'час запам’ятовування',
     sec: 'сек',
     min: 'хв',
-    hours: 'годин',
+    hours: 'год',
     IfYouEnteredWords: 'Якщо ви ввели всі слова і готові завершити спробу',
     Finish: 'Завершити',
     ConfirmWarningTitle: 'Завершити спробу',

@@ -22,8 +22,8 @@ import RenderNewGameOptionItem from '../components/screenComponents/newGame/Rend
 const width = Dimensions.get('screen').width;
 
 export default function NewGameScreen({navigation}: any) {
-  const theme: ThemeName['value'] = 'olive';
-  const language: Language['value'] = 'UA';
+  const theme: ThemeName = 'olive';
+  const language: Language = 'UA';
 
   return (
     <SafeAreaView

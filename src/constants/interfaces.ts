@@ -17,31 +17,25 @@ export interface ThemeColor {
   bgShadow: string;
 }
 
-export interface ThemeName {
-  value: 'olive';
-}
+export type ThemeName = 'olive';
 
-export interface Language {
-  value: 'UA';
-}
+export type Language = 'UA';
 
-export interface IconName {
-  value:
-    | 'play'
-    | 'chevronLeft'
-    | 'chevronRight'
-    | 'settings'
-    | 'statistics'
-    | 'easy'
-    | 'hard'
-    | 'fire'
-    | 'infinity'
-    | 'close'
-    | 'correct'
-    | 'open'
-    | 'arrowLeft'
-    | 'arrowRight';
-}
+export type IconName =
+  | 'play'
+  | 'chevronLeft'
+  | 'chevronRight'
+  | 'settings'
+  | 'statistics'
+  | 'easy'
+  | 'hard'
+  | 'fire'
+  | 'infinity'
+  | 'close'
+  | 'correct'
+  | 'open'
+  | 'arrowLeft'
+  | 'arrowRight';
 
 export interface RulesInterface {
   widthPercentage: string;
@@ -49,9 +43,7 @@ export interface RulesInterface {
   defaultWordsAmount: number;
 }
 
-export interface GameTypeInterface {
-  type: 'easy' | 'hard' | 'stamina';
-}
+export type GameTypeInterface = 'easy' | 'hard' | 'stamina';
 
 export interface TextInterface {
   quote: string;
@@ -62,22 +54,22 @@ export interface TextInterface {
     easy: {
       title: string;
       description: string;
-      icon: IconName['value'];
-      type: GameTypeInterface['type'];
+      icon: IconName;
+      type: GameTypeInterface;
       typeTitle: string;
     };
     hard: {
       title: string;
       description: string;
-      icon: IconName['value'];
-      type: GameTypeInterface['type'];
+      icon: IconName;
+      type: GameTypeInterface;
       typeTitle: string;
     };
     stamina: {
       title: string;
       description: string;
-      icon: IconName['value'];
-      type: GameTypeInterface['type'];
+      icon: IconName;
+      type: GameTypeInterface;
       typeTitle: string;
     };
   };

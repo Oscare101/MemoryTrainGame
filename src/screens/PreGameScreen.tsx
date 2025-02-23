@@ -15,8 +15,8 @@ import {GetRandomWords} from '../functions/funtions';
 const width = Dimensions.get('screen').width;
 
 export default function PreGameScreen({navigation, route}: any) {
-  const theme: ThemeName['value'] = 'olive';
-  const language: Language['value'] = 'UA';
+  const theme: ThemeName = 'olive';
+  const language: Language = 'UA';
 
   const [wordsAmount, setWordsAmount] = useState<string>(
     route.params.game.type === 'stamina'

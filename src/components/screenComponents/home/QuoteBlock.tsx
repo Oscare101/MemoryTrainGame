@@ -7,8 +7,8 @@ import {colors} from '../../../constants/colors';
 const width = Dimensions.get('screen').width;
 
 export default function QuoteBlock(props: {
-  theme: ThemeName['value'];
-  language: Language['value'];
+  theme: ThemeName;
+  language: Language;
 }) {
   return (
     <View style={styles.quoteBlock}>

@@ -8,7 +8,7 @@ import Toast from 'react-native-toast-message';
 const width = Dimensions.get('screen').width;
 
 export default function AppComponent() {
-  const theme: ThemeName['value'] = 'olive';
+  const theme: ThemeName = 'olive';
   const toastConfig = {
     ToastMessage: ({props}: any) => (
       <View

@@ -16,7 +16,7 @@ const width = Dimensions.get('screen').width;
 
 interface CardListBlock {
   wordsList: string[];
-  theme: ThemeName['value'];
+  theme: ThemeName;
   onOpenCard: any;
 }
 

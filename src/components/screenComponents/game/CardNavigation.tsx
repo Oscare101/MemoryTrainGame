@@ -14,9 +14,9 @@ import {rules} from '../../../constants/rules';
 const width = Dimensions.get('screen').width;
 
 interface CardNavigationProps {
-  theme: ThemeName['value'];
+  theme: ThemeName;
   words: string[];
-  type: GameTypeInterface['type'];
+  type: GameTypeInterface;
   wordIndex: number;
   setWordIndex: any;
   back: boolean;

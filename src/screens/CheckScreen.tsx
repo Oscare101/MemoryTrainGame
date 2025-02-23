@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {colors} from '../constants/colors';
 import {Language, ThemeName} from '../constants/interfaces';
 import Header from '../components/customs/Header';
@@ -16,12 +16,13 @@ import CheckBlock from '../components/screenComponents/game/CheckBlock';
 import {rules} from '../constants/rules';
 import ConfirmCheckModal from '../components/customs/ConfirmCheckModal';
 import {text} from '../constants/text';
+import TimeBlock from '../components/screenComponents/check/TimeBlock';
 
 const width = Dimensions.get('screen').width;
 
 export default function CheckScreen({navigation, route}: any) {
-  const theme: ThemeName['value'] = 'olive';
-  const language: Language['value'] = 'UA';
+  const theme: ThemeName = 'olive';
+  const language: Language = 'UA';
 
   const [modal, setModal] = useState<boolean>(false);
   const [confirm, setConfirm] = useState<boolean>(false);
@@ -29,6 +30,8 @@ export default function CheckScreen({navigation, route}: any) {
   const [wordsInputs, setWordsInputs] = useState<string[]>(
     Array(route.params.words.length).fill(''),
   );
+
+  const time = route.params.finish - route.params.start;
 
   useEffect(() => {
     const backAction = () => {
@@ -80,6 +83,34 @@ export default function CheckScreen({navigation, route}: any) {
     );
   }
 
+  const onCheck = useCallback(() => {
+    if (wordsInputs.some((i: any) => !i.trim())) {
+      setConfirm(true);
+    } else {
+      console.log('result');
+    }
+  }, [wordsInputs]);
+
+  const closeGameModal = useCallback(() => {
+    setModal(false);
+  }, []);
+
+  const submitCloseGame = useCallback(() => {
+    setModal(false);
+    navigation.pop(2);
+    // TODO save DNF to statistics
+  }, []);
+
+  const closeConfirmModal = useCallback(() => {
+    setConfirm(false);
+  }, []);
+
+  const submitConfirmGame = useCallback(() => {
+    setConfirm(false);
+    navigation.pop(2);
+    // TODO save result to statistics
+  }, []);
+
   return (
     <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
       <Header
@@ -101,43 +132,22 @@ export default function CheckScreen({navigation, route}: any) {
         finishAvailable={true}
         buttonTitle={text[language].Finish}
         comment={text[language].IfYouEnteredWords}
-        onCheck={() => {
-          if (wordsInputs.some((i: any) => !i.trim())) {
-            setConfirm(true);
-          } else {
-          }
-        }}
+        onCheck={onCheck}
       />
-      <View
-        style={{
-          width: width * rules.widthNumber,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: width * 0.05,
-          height: width * 0.15,
-        }}></View>
+      <TimeBlock time={time} language={language} theme={theme} />
       <CloseGameModal
         theme={theme}
         language={language}
         visible={modal}
-        onClose={() => setModal(false)}
-        onSubmit={() => {
-          setModal(false);
-          navigation.pop(2);
-          // TODO save statistics
-        }}
+        onClose={closeGameModal}
+        onSubmit={submitCloseGame}
       />
       <ConfirmCheckModal
         theme={theme}
         language={language}
         visible={confirm}
-        onClose={() => setConfirm(false)}
-        onSubmit={() => {
-          setModal(false);
-          navigation.pop(2);
-          // TODO save statistics
-        }}
+        onClose={closeConfirmModal}
+        onSubmit={submitConfirmGame}
       />
     </View>
   );

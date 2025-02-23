@@ -11,7 +11,7 @@ import Icon from '../icons/Icon';
 import {colors} from '../../constants/colors';
 
 interface HeaderProps {
-  icon: IconName['value'];
+  icon: IconName;
   action: any;
   secondary?: boolean;
   secondaryTitle?: string;
@@ -21,7 +21,7 @@ interface HeaderProps {
 const width = Dimensions.get('screen').width;
 
 export default function Header(props: HeaderProps) {
-  const theme: ThemeName['value'] = 'olive';
+  const theme: ThemeName = 'olive';
 
   return (
     <View style={styles.header}>

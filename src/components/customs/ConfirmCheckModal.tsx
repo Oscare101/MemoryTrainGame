@@ -21,11 +21,11 @@ interface CloseModalProps {
   visible: boolean;
   onClose: any;
   onSubmit: any;
-  theme: ThemeName['value'];
-  language: Language['value'];
+  theme: ThemeName;
+  language: Language;
 }
 
-export default function ConfirmCheckModal(props: CloseModalProps) {
+function ConfirmCheckModal(props: CloseModalProps) {
   return (
     <Modal
       visible={props.visible}
@@ -133,3 +133,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
 });
+
+export default React.memo(ConfirmCheckModal);

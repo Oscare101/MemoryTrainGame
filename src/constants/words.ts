@@ -1,6 +1,6 @@
 import {Language} from './interfaces';
 
-export const words: Record<Language['value'], string[]> = {
+export const words: Record<Language, string[]> = {
   UA: [
     'дім',
     "сім'я",

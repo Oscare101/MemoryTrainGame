@@ -1,6 +1,6 @@
 import {ThemeColor, ThemeName} from './interfaces';
 
-export const colors: Record<ThemeName['value'], ThemeColor> = {
+export const colors: Record<ThemeName, ThemeColor> = {
   olive: {
     name: 'Olive',
     bg: ['#768F7B', '#78987E'],

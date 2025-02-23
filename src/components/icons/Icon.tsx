@@ -16,11 +16,11 @@ import ArrowLeftIcon from './ArrowLeftIcon';
 import ArrowRightIcon from './ArrowRightIcon';
 
 export default function Icon(props: {
-  name: IconName['value'];
+  name: IconName;
   size: number;
   color: string;
 }) {
-  const icons: Record<IconName['value'], any> = {
+  const icons: Record<IconName, any> = {
     play: (
       <SvgXml
         xml={PlayIcon(props.color)}

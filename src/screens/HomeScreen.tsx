@@ -17,8 +17,8 @@ import {text} from '../constants/text';
 const width = Dimensions.get('screen').width;
 
 export default function HomeScreen({navigation}: any) {
-  const theme: ThemeName['value'] = 'olive';
-  const language: Language['value'] = 'UA';
+  const theme: ThemeName = 'olive';
+  const language: Language = 'UA';
 
   return (
     <SafeAreaView

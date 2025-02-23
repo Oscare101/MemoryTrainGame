@@ -8,7 +8,7 @@ const width = Dimensions.get('screen').width;
 
 interface GradientButtonProps {
   title: string;
-  icon?: IconName['value'];
+  icon?: IconName;
   bgColors: string[];
   titleColor: string;
   onPress: any;

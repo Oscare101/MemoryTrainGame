@@ -20,8 +20,8 @@ import {rules} from '../constants/rules';
 const width = Dimensions.get('screen').width;
 
 export default function GameScreen({navigation, route}: any) {
-  const theme: ThemeName['value'] = 'olive';
-  const language: Language['value'] = 'UA';
+  const theme: ThemeName = 'olive';
+  const language: Language = 'UA';
 
   const [modal, setModal] = useState<boolean>(false);
   const [wordIndex, setWordIndex] = useState<number>(0);
@@ -53,6 +53,10 @@ export default function GameScreen({navigation, route}: any) {
   useEffect(() => {
     setStartTime(new Date().getTime());
   }, []);
+
+  useEffect(() => {
+    console.log(wordIndex);
+  }, [wordIndex]);
 
   return (
     <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
@@ -110,7 +114,10 @@ export default function GameScreen({navigation, route}: any) {
           navigation.navigate('CheckScreen', {
             start: startTime,
             finish: new Date().getTime(),
-            words: route.params.words,
+            words:
+              route.params.type === 'stamina'
+                ? route.params.words.slice(0, wordIndex + 1)
+                : route.params.words,
             type: route.params.type,
           });
         }}

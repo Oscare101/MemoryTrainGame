@@ -7,7 +7,7 @@ const width = Dimensions.get('screen').width;
 
 export default function RenderNewGameOptionItem(props: {
   item: any;
-  theme: ThemeName['value'];
+  theme: ThemeName;
   onPress: any;
 }) {
   return (
