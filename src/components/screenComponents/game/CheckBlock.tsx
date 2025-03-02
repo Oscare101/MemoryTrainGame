@@ -13,11 +13,19 @@ interface CheckBlockProps {
   onCheck: () => void;
   buttonTitle: string;
   comment: string;
+  shortScreen: boolean;
 }
 
 function CheckBlock(props: CheckBlockProps) {
   return (
-    <View style={[styles.block, {borderColor: colors[props.theme].main}]}>
+    <View
+      style={[
+        styles.block,
+        {
+          borderColor: colors[props.theme].main,
+          paddingTop: props.shortScreen ? width * 0.05 : width * 0.1,
+        },
+      ]}>
       <GradientButton
         title={props.buttonTitle}
         bgColors={
@@ -34,7 +42,15 @@ function CheckBlock(props: CheckBlockProps) {
         onPress={props.onCheck}
         disables={!props.finishAvailable}
       />
-      <Text style={[styles.comment, {color: colors[props.theme].comment}]}>
+      <Text
+        style={[
+          styles.comment,
+          {
+            color: colors[props.theme].comment,
+            marginBottom: props.shortScreen ? width * 0.05 : width * 0.1,
+            marginTop: props.shortScreen ? width * 0.02 : width * 0.05,
+          },
+        ]}>
         {props.comment}
       </Text>
     </View>
@@ -48,14 +64,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: width * 0.1,
   },
   comment: {
     fontSize: width * 0.042,
-    marginBottom: width * 0.1,
     width: width * 0.6,
     textAlign: 'center',
-    marginTop: width * 0.05,
   },
 });
 

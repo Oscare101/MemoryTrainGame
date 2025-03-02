@@ -19,7 +19,9 @@ import {text} from '../constants/text';
 import Header from '../components/customs/Header';
 import RenderNewGameOptionItem from '../components/screenComponents/newGame/RenderNewGameOptionItem';
 
-const width = Dimensions.get('screen').width;
+const {width, height} = Dimensions.get('screen');
+
+const shortScreen = height / width < 1.8;
 
 export default function NewGameScreen({navigation}: any) {
   const theme: ThemeName = 'olive';
@@ -33,23 +35,18 @@ export default function NewGameScreen({navigation}: any) {
         barStyle={colors[theme].barStyle}
       />
       <Header icon={'chevronLeft'} action={() => navigation.goBack()} />
-      <View
-        style={{
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flex: 1,
-          width: width * rules.widthNumber,
-        }}>
-        <Text style={[styles.title, {color: colors[theme].main}]}>
+      <View style={styles.contentBlock}>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: colors[theme].main,
+              marginTop: shortScreen ? 0 : width * 0.15,
+            },
+          ]}>
           {text[language].NewGame}
         </Text>
-        <View
-          style={{
-            width: '100%',
-            gap: width * 0.03,
-            marginBottom: width * 0.1,
-          }}>
+        <View style={styles.optionsBlock}>
           {Object.values(text[language].options).map((item: any) => (
             <RenderNewGameOptionItem
               key={item.type}
@@ -73,13 +70,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   contentBlock: {
-    width: width * rules.widthNumber,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
+    flex: 1,
+    width: width * rules.widthNumber,
   },
   title: {
     fontSize: width * 0.1,
-    marginTop: width * 0.15,
+  },
+  optionsBlock: {
+    width: '100%',
+    gap: width * 0.03,
+    marginBottom: width * 0.1,
   },
 });

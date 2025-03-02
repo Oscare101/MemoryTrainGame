@@ -9,69 +9,46 @@ import NewGameScreen from '../../screens/NewGameScreen';
 import PreGameScreen from '../../screens/PreGameScreen';
 import GameScreen from '../../screens/GameScreen';
 import CheckScreen from '../../screens/CheckScreen';
+import ResultScreen from '../../screens/ResultScreen';
 
 const Stack = createStackNavigator();
+
+const options = {
+  headerShown: false,
+  headerLeft: () => null,
+  animationEnabled: true,
+  gestureDirection: 'horizontal' as 'horizontal' | 'vertical',
+  cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+};
 
 export default function MainNavigation() {
   return (
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerShown: false,
-          headerLeft: () => null,
-          animationEnabled: true,
-          gestureDirection: 'horizontal',
-          gestureEnabled: true,
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}
-      />
+      <Stack.Screen name="Home" component={HomeScreen} options={options} />
       <Stack.Screen
         name="NewGame"
         component={NewGameScreen}
-        options={{
-          headerShown: false,
-          headerLeft: () => null,
-          animationEnabled: true,
-          gestureDirection: 'horizontal',
-          gestureEnabled: true,
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}
+        options={options}
       />
       <Stack.Screen
         name="PreGameScreen"
         component={PreGameScreen}
-        options={{
-          headerShown: false,
-          headerLeft: () => null,
-          animationEnabled: true,
-          gestureDirection: 'horizontal',
-          gestureEnabled: true,
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}
+        options={options}
       />
       <Stack.Screen
         name="GameScreen"
         component={GameScreen}
-        options={{
-          headerShown: false,
-          headerLeft: () => null,
-          animationEnabled: true,
-          gestureDirection: 'horizontal',
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}
+        options={options}
       />
       <Stack.Screen
         name="CheckScreen"
         component={CheckScreen}
-        options={{
-          headerShown: false,
-          headerLeft: () => null,
-          animationEnabled: true,
-          gestureDirection: 'horizontal',
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}
+        options={options}
+      />
+      <Stack.Screen
+        name="ResultScreen"
+        component={ResultScreen}
+        options={options}
       />
     </Stack.Navigator>
   );

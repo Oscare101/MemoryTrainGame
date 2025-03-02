@@ -18,8 +18,8 @@ import ConfirmCheckModal from '../components/customs/ConfirmCheckModal';
 import {text} from '../constants/text';
 import TimeBlock from '../components/screenComponents/check/TimeBlock';
 
-const width = Dimensions.get('screen').width;
-
+const {width, height} = Dimensions.get('screen');
+const shortScreen = height / width < 1.8;
 export default function CheckScreen({navigation, route}: any) {
   const theme: ThemeName = 'olive';
   const language: Language = 'UA';
@@ -133,6 +133,7 @@ export default function CheckScreen({navigation, route}: any) {
         buttonTitle={text[language].Finish}
         comment={text[language].IfYouEnteredWords}
         onCheck={onCheck}
+        shortScreen={shortScreen}
       />
       <TimeBlock time={time} language={language} theme={theme} />
       <CloseGameModal

@@ -17,8 +17,8 @@ import {text} from '../constants/text';
 import CardsListBlock from '../components/screenComponents/game/CardsListBlock';
 import {rules} from '../constants/rules';
 
-const width = Dimensions.get('screen').width;
-
+const {width, height} = Dimensions.get('screen');
+const shortScreen = height / width < 1.8;
 export default function GameScreen({navigation, route}: any) {
   const theme: ThemeName = 'olive';
   const language: Language = 'UA';
@@ -53,10 +53,6 @@ export default function GameScreen({navigation, route}: any) {
   useEffect(() => {
     setStartTime(new Date().getTime());
   }, []);
-
-  useEffect(() => {
-    console.log(wordIndex);
-  }, [wordIndex]);
 
   return (
     <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
@@ -121,6 +117,7 @@ export default function GameScreen({navigation, route}: any) {
             type: route.params.type,
           });
         }}
+        shortScreen={shortScreen}
       />
       <View
         style={{

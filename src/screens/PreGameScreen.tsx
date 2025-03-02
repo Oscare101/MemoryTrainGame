@@ -12,8 +12,8 @@ import {words} from '../constants/words';
 import Toast from 'react-native-toast-message';
 import {GetRandomWords} from '../functions/funtions';
 
-const width = Dimensions.get('screen').width;
-
+const {width, height} = Dimensions.get('screen');
+const shortScreen = height / width < 1.8;
 export default function PreGameScreen({navigation, route}: any) {
   const theme: ThemeName = 'olive';
   const language: Language = 'UA';
@@ -46,23 +46,8 @@ export default function PreGameScreen({navigation, route}: any) {
         barStyle={colors[theme].barStyle}
       />
       <Header icon={'chevronLeft'} action={() => navigation.goBack()} />
-      <View
-        style={{
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flex: 1,
-          width: width * rules.widthNumber,
-        }}>
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            gap: width * 0.02,
-          }}>
+      <View style={styles.contentBlock}>
+        <View style={[styles.inputBlock, shortScreen ? {} : {flex: 1}]}>
           {route.params.game.type === 'stamina' ? (
             <Icon
               name={'infinity'}
@@ -102,13 +87,13 @@ export default function PreGameScreen({navigation, route}: any) {
               borderTopWidth: 1,
               borderColor: colors[theme].main,
               borderStyle: 'solid',
-              paddingTop: width * 0.02,
+              paddingTop: shortScreen ? width * 0.01 : width * 0.02,
             }}>
             <Text
               style={{
                 color: colors[theme].main,
                 fontSize: width * 0.042,
-                marginBottom: width * 0.1,
+                marginBottom: shortScreen ? width * 0.02 : width * 0.1,
               }}>
               {text[language].WordsAmount}
             </Text>
@@ -125,21 +110,15 @@ export default function PreGameScreen({navigation, route}: any) {
         </View>
 
         <View
-          style={{
-            flex: 1,
-            width: '100%',
-
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            flexDirection: 'column',
-            gap: width * 0.02,
-            marginBottom: width * 0.1,
-          }}>
+          style={[
+            styles.infoBlock,
+            {marginBottom: shortScreen ? width * 0.02 : width * 0.1},
+          ]}>
           <Text
             style={{
               color: colors[theme].comment,
               fontSize: width * 0.042,
-              marginBottom: width * 0.1,
+              marginBottom: shortScreen ? width * 0.02 : width * 0.1,
             }}>
             {text[language].gamePreambula}
           </Text>
@@ -188,5 +167,27 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  contentBlock: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flex: 1,
+    width: width * rules.widthNumber,
+  },
+  inputBlock: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    gap: width * 0.02,
+  },
+  infoBlock: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    flexDirection: 'column',
+    gap: width * 0.02,
   },
 });
