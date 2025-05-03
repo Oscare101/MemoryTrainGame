@@ -15,11 +15,40 @@ export interface ThemeColor {
   barStyle: 'dark-content' | 'light-content';
   bgDim: string;
   bgShadow: string;
+  border: string;
 }
 
-export type ThemeName = 'olive';
+export interface GameAttempt {
+  timestamp: number;
+  duration: number;
+  wordsAmount: number;
+  words: string[];
+  wordPack: WordPackId;
+  language: Language;
+  correctWordsAmount: number;
+  inputs: string[];
+}
 
-export type Language = 'UA';
+export type ThemeName = 'Olive' | 'Dark blue';
+
+export type Language = 'uk'; //| 'en';
+
+export type WordPackId = 'common-uk-100';
+
+export interface UserData {
+  theme: ThemeName;
+  language: Language;
+  startDate: number;
+  wordPack: WordPackId;
+  history: GameAttempt[];
+  isOnboardingPassed: boolean;
+}
+
+export interface WordPack {
+  id: WordPackId;
+  language: Language;
+  words: string[];
+}
 
 export type IconName =
   | 'play'
@@ -35,7 +64,9 @@ export type IconName =
   | 'correct'
   | 'open'
   | 'arrowLeft'
-  | 'arrowRight';
+  | 'arrowRight'
+  | 'palette'
+  | 'language';
 
 export interface RulesInterface {
   widthPercentage: string;
@@ -94,4 +125,9 @@ export interface TextInterface {
   Finish: string;
   ConfirmWarningTitle: string;
   ConfirmWarning: string;
+  // word pack
+  'common-uk-100': string;
+  Settings: string;
+  Theme: string;
+  Language: string;
 }

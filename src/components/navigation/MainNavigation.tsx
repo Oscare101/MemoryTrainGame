@@ -10,6 +10,9 @@ import PreGameScreen from '../../screens/PreGameScreen';
 import GameScreen from '../../screens/GameScreen';
 import CheckScreen from '../../screens/CheckScreen';
 import ResultScreen from '../../screens/ResultScreen';
+import SettingsScreen from '../../screens/SettingsScreen';
+import LaunchScreen from '../../screens/LaunchScreen';
+import OnBoardingScreen from '../../screens/OnBoardingScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +26,17 @@ const options = {
 
 export default function MainNavigation() {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="LaunchScreen">
+      <Stack.Screen
+        name="LaunchScreen"
+        component={LaunchScreen}
+        options={options}
+      />
+      <Stack.Screen
+        name="OnBoarding"
+        component={OnBoardingScreen}
+        options={options}
+      />
       <Stack.Screen name="Home" component={HomeScreen} options={options} />
       <Stack.Screen
         name="NewGame"
@@ -48,6 +61,11 @@ export default function MainNavigation() {
       <Stack.Screen
         name="ResultScreen"
         component={ResultScreen}
+        options={options}
+      />
+      <Stack.Screen
+        name="SettingsScreen"
+        component={SettingsScreen}
         options={options}
       />
     </Stack.Navigator>

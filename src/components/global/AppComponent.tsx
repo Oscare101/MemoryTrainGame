@@ -4,11 +4,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {ThemeName} from '../../constants/interfaces';
 import MainNavigation from '../navigation/MainNavigation';
 import Toast from 'react-native-toast-message';
+import {Provider} from 'react-redux';
+import {store} from '../../redux/store';
 
 const width = Dimensions.get('screen').width;
 
 export default function AppComponent() {
-  const theme: ThemeName = 'olive';
+  const theme: ThemeName = 'Olive';
   const toastConfig = {
     ToastMessage: ({props}: any) => (
       <View
@@ -33,11 +35,11 @@ export default function AppComponent() {
     ),
   };
   return (
-    <>
+    <Provider store={store}>
       <NavigationContainer>
         <MainNavigation />
       </NavigationContainer>
       <Toast config={toastConfig} />
-    </>
+    </Provider>
   );
 }

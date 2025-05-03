@@ -1,6 +1,6 @@
 import {Dimensions, StatusBar, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Language, ThemeName} from '../constants/interfaces';
+import {Language, ThemeName, UserData, WordPack} from '../constants/interfaces';
 import Header from '../components/customs/Header';
 import {colors} from '../constants/colors';
 import {text} from '../constants/text';
@@ -8,30 +8,34 @@ import {rules} from '../constants/rules';
 import GradientButton from '../components/customs/GradientButton';
 import Icon from '../components/icons/Icon';
 import {TextInput} from 'react-native-gesture-handler';
-import {words} from '../constants/words';
 import Toast from 'react-native-toast-message';
 import {GetRandomWords} from '../functions/funtions';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux';
+import WordsExport from '../components/words/wordsOutput';
 
 const {width, height} = Dimensions.get('screen');
 const shortScreen = height / width < 1.8;
 export default function PreGameScreen({navigation, route}: any) {
-  const theme: ThemeName = 'olive';
-  const language: Language = 'UA';
+  const userData: UserData = useSelector((state: RootState) => state.userData);
+  const theme: ThemeName = userData.theme;
+  const language: Language = userData.language;
+  const words: WordPack['words'] = WordsExport(userData.wordPack).words;
 
   const [wordsAmount, setWordsAmount] = useState<string>(
     route.params.game.type === 'stamina'
-      ? words[language].length.toString()
+      ? words.length.toString()
       : rules.defaultWordsAmount.toString(),
   );
 
   useEffect(() => {
-    if (+wordsAmount > words[language].length) {
+    if (+wordsAmount > words.length) {
       Toast.show({
         type: 'ToastMessage',
         props: {
           title: text[language].wordsMaxWarning.replace(
             '#',
-            words[language].length.toString(),
+            words.length.toString(),
           ),
         },
         position: 'top',
@@ -45,7 +49,11 @@ export default function PreGameScreen({navigation, route}: any) {
         backgroundColor={colors[theme].bg[0]}
         barStyle={colors[theme].barStyle}
       />
-      <Header icon={'chevronLeft'} action={() => navigation.goBack()} />
+      <Header
+        theme={theme}
+        icon={'chevronLeft'}
+        action={() => navigation.goBack()}
+      />
       <View style={styles.contentBlock}>
         <View style={[styles.inputBlock, shortScreen ? {} : {flex: 1}]}>
           {route.params.game.type === 'stamina' ? (
@@ -70,7 +78,7 @@ export default function PreGameScreen({navigation, route}: any) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 color:
-                  +wordsAmount > words[language].length
+                  +wordsAmount > words.length
                     ? colors[theme].error
                     : colors[theme].main,
               }}
@@ -125,18 +133,18 @@ export default function PreGameScreen({navigation, route}: any) {
           <GradientButton
             title={text[language].Start}
             bgColors={
-              !wordsAmount.length || +wordsAmount > words[language].length
+              !wordsAmount.length || +wordsAmount > words.length
                 ? colors[theme].buttonDisabled
                 : colors[theme].buttonActive
             }
             titleColor={
-              !wordsAmount.length || +wordsAmount > words[language].length
+              !wordsAmount.length || +wordsAmount > words.length
                 ? colors[theme].buttonTitleDisabled
                 : colors[theme].buttonTitleActive
             }
             icon={'play'}
             onPress={() => {
-              const wordsArray = GetRandomWords(words[language], +wordsAmount);
+              const wordsArray = GetRandomWords(words, +wordsAmount);
 
               navigation.navigate('GameScreen', {
                 type: route.params.game.type,
@@ -144,9 +152,7 @@ export default function PreGameScreen({navigation, route}: any) {
               });
             }}
             cardStyle={{width: '100%', borderRadius: width * 0.04}}
-            disables={
-              !wordsAmount.length || +wordsAmount > words[language].length
-            }
+            disables={!wordsAmount.length || +wordsAmount > words.length}
           />
           <Text
             style={{

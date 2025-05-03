@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   timeTitle: {
     fontSize: width * 0.075,
-    color: colors['olive'].main,
+    color: colors['Olive'].main,
   },
   timeComment: {
     fontSize: width * 0.042,

@@ -14,6 +14,8 @@ import CorrectIcon from './CorrectIcon';
 import OpenIcon from './OpenIcon';
 import ArrowLeftIcon from './ArrowLeftIcon';
 import ArrowRightIcon from './ArrowRightIcon';
+import PaletteIcon from './PaletteIcon';
+import LanguageIcon from './LanguageIcon';
 
 export default function Icon(props: {
   name: IconName;
@@ -115,6 +117,20 @@ export default function Icon(props: {
     arrowRight: (
       <SvgXml
         xml={ArrowRightIcon(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    palette: (
+      <SvgXml
+        xml={PaletteIcon(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    language: (
+      <SvgXml
+        xml={LanguageIcon(props.color)}
         width={props.size}
         height={props.size}
       />

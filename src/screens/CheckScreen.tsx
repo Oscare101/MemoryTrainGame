@@ -7,22 +7,24 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {colors} from '../constants/colors';
-import {Language, ThemeName} from '../constants/interfaces';
+import {Language, ThemeName, UserData} from '../constants/interfaces';
 import Header from '../components/customs/Header';
 import CloseGameModal from '../components/customs/CloseGameModal';
 import CheckBlock from '../components/screenComponents/game/CheckBlock';
-import {rules} from '../constants/rules';
 import ConfirmCheckModal from '../components/customs/ConfirmCheckModal';
 import {text} from '../constants/text';
 import TimeBlock from '../components/screenComponents/check/TimeBlock';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux';
 
 const {width, height} = Dimensions.get('screen');
 const shortScreen = height / width < 1.8;
 export default function CheckScreen({navigation, route}: any) {
-  const theme: ThemeName = 'olive';
-  const language: Language = 'UA';
+  const userData: UserData = useSelector((state: RootState) => state.userData);
+  const theme: ThemeName = userData.theme;
+  const language: Language = userData.language;
 
   const [modal, setModal] = useState<boolean>(false);
   const [confirm, setConfirm] = useState<boolean>(false);
@@ -30,6 +32,7 @@ export default function CheckScreen({navigation, route}: any) {
   const [wordsInputs, setWordsInputs] = useState<string[]>(
     Array(route.params.words.length).fill(''),
   );
+  const inputRefs = useRef<TextInput[]>([]);
 
   const time = route.params.finish - route.params.start;
 
@@ -59,6 +62,7 @@ export default function CheckScreen({navigation, route}: any) {
           {item.index + 1}
         </Text>
         <TextInput
+          ref={el => (inputRefs.current[item.index] = el!)} // Store reference
           value={wordsInputs[item.index]}
           onChangeText={(value: string) => {
             let arr = [...wordsInputs];
@@ -78,6 +82,14 @@ export default function CheckScreen({navigation, route}: any) {
           }}
           selectionColor={colors[theme].main}
           autoCapitalize="words"
+          returnKeyType={
+            item.index === wordsInputs.length - 1 ? 'done' : 'next'
+          } // 'done' on last input
+          onSubmitEditing={() => {
+            if (item.index < wordsInputs.length - 1) {
+              inputRefs.current[item.index + 1]?.focus(); // Focus next input
+            }
+          }}
         />
       </View>
     );
@@ -114,6 +126,7 @@ export default function CheckScreen({navigation, route}: any) {
   return (
     <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
       <Header
+        theme={theme}
         icon={'close'}
         action={() => {
           setModal(true);
@@ -124,6 +137,7 @@ export default function CheckScreen({navigation, route}: any) {
           style={{width: width}}
           data={route.params.words}
           renderItem={RenderItem}
+          ListFooterComponent={() => <View style={{height: width * 0.2}} />}
         />
       </View>
       <CheckBlock

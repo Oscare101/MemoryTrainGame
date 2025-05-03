@@ -11,6 +11,7 @@ import Icon from '../icons/Icon';
 import {colors} from '../../constants/colors';
 
 interface HeaderProps {
+  theme: ThemeName;
   icon: IconName;
   action: any;
   secondary?: boolean;
@@ -21,8 +22,6 @@ interface HeaderProps {
 const width = Dimensions.get('screen').width;
 
 export default function Header(props: HeaderProps) {
-  const theme: ThemeName = 'olive';
-
   return (
     <View style={styles.header}>
       <TouchableOpacity
@@ -32,7 +31,7 @@ export default function Header(props: HeaderProps) {
         <Icon
           name={props.icon}
           size={width * 0.1}
-          color={colors[theme].comment}
+          color={colors[props.theme].main}
         />
       </TouchableOpacity>
       {props.secondaryTitle && props.secondary ? (
@@ -40,7 +39,11 @@ export default function Header(props: HeaderProps) {
           activeOpacity={0.8}
           style={styles.button}
           onPress={props.secondaryAction}>
-          <Text style={{fontSize: width * 0.075, color: colors[theme].comment}}>
+          <Text
+            style={{
+              fontSize: width * 0.075,
+              color: colors[props.theme].main,
+            }}>
             {props.secondaryTitle}
           </Text>
         </TouchableOpacity>

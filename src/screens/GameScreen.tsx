@@ -9,19 +9,23 @@ import {
 import React, {useEffect, useState} from 'react';
 import Header from '../components/customs/Header';
 import {colors} from '../constants/colors';
-import {Language, ThemeName} from '../constants/interfaces';
+import {Language, ThemeName, UserData} from '../constants/interfaces';
 import CloseGameModal from '../components/customs/CloseGameModal';
 import CardNavigation from '../components/screenComponents/game/CardNavigation';
 import CheckBlock from '../components/screenComponents/game/CheckBlock';
 import {text} from '../constants/text';
 import CardsListBlock from '../components/screenComponents/game/CardsListBlock';
 import {rules} from '../constants/rules';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux';
+import GameBottomBlock from '../components/screenComponents/game/GameBottomBlock';
 
 const {width, height} = Dimensions.get('screen');
 const shortScreen = height / width < 1.8;
 export default function GameScreen({navigation, route}: any) {
-  const theme: ThemeName = 'olive';
-  const language: Language = 'UA';
+  const userData: UserData = useSelector((state: RootState) => state.userData);
+  const theme: ThemeName = userData.theme;
+  const language: Language = userData.language;
 
   const [modal, setModal] = useState<boolean>(false);
   const [wordIndex, setWordIndex] = useState<number>(0);
@@ -61,6 +65,7 @@ export default function GameScreen({navigation, route}: any) {
         barStyle={colors[theme].barStyle}
       />
       <Header
+        theme={theme}
         icon={'close'}
         action={() => {
           setModal(true);
@@ -146,6 +151,20 @@ export default function GameScreen({navigation, route}: any) {
           />
         )}
       </View>
+      {/* <GameBottomBlock
+        theme={theme}
+        mainButton={{
+          title: text[language].Check,
+          action: () => {
+            console.log('a');
+          },
+          active: true,
+        }}
+        language={language}
+        width={width}
+        wordNumber={wordIndex + 1}
+        wordsAmount={route.params.words.length}
+      /> */}
 
       <CloseGameModal
         theme={theme}

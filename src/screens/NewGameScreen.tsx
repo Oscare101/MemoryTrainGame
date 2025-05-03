@@ -12,20 +12,24 @@ import {
   Language,
   TextInterface,
   ThemeName,
+  UserData,
 } from '../constants/interfaces';
 import {colors} from '../constants/colors';
 import {rules} from '../constants/rules';
 import {text} from '../constants/text';
 import Header from '../components/customs/Header';
 import RenderNewGameOptionItem from '../components/screenComponents/newGame/RenderNewGameOptionItem';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux';
 
 const {width, height} = Dimensions.get('screen');
 
 const shortScreen = height / width < 1.8;
 
 export default function NewGameScreen({navigation}: any) {
-  const theme: ThemeName = 'olive';
-  const language: Language = 'UA';
+  const userData: UserData = useSelector((state: RootState) => state.userData);
+  const theme: ThemeName = userData.theme;
+  const language: Language = userData.language;
 
   return (
     <SafeAreaView
@@ -34,7 +38,11 @@ export default function NewGameScreen({navigation}: any) {
         backgroundColor={colors[theme].bg[0]}
         barStyle={colors[theme].barStyle}
       />
-      <Header icon={'chevronLeft'} action={() => navigation.goBack()} />
+      <Header
+        theme={theme}
+        icon={'chevronLeft'}
+        action={() => navigation.goBack()}
+      />
       <View style={styles.contentBlock}>
         <Text
           style={[

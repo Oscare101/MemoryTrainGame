@@ -1,11 +1,11 @@
 import {ThemeColor, ThemeName} from './interfaces';
 
 export const colors: Record<ThemeName, ThemeColor> = {
-  olive: {
+  Olive: {
     name: 'Olive',
-    bg: ['#768F7B', '#78987E'],
+    bg: ['#7E9783', '#7E9783'],
     main: '#333333',
-    comment: '#ADADAD',
+    comment: '#CCCCCC',
     accent: '#B6B654',
     card: '#5F7463',
     success: '#333333',
@@ -18,5 +18,25 @@ export const colors: Record<ThemeName, ThemeColor> = {
     barStyle: 'dark-content',
     bgDim: '#47564A',
     bgShadow: '#00000066',
+    border: '#333333',
+  },
+  'Dark blue': {
+    name: 'Dark blue',
+    bg: ['#374951', '#374951'],
+    main: '#EDF1F3',
+    comment: '#606465',
+    accent: '#6C92A2',
+    card: '#3A545E',
+    success: '#4FA03B',
+    error: '#A64646',
+    warning: '#606465',
+    buttonActive: ['#333333', '#3C3C3C'],
+    buttonDisabled: ['#5F7463', '#5F7463'],
+    buttonTitleActive: '#C1D2C4',
+    buttonTitleDisabled: '#ADADAD',
+    barStyle: 'dark-content',
+    bgDim: '#47564A',
+    bgShadow: '#00000066',
+    border: '#EDF1F3',
   },
 };

@@ -1,10 +1,8 @@
-import {Dimensions, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {IconName} from '../../constants/interfaces';
 import Icon from '../icons/Icon';
-
-const width = Dimensions.get('screen').width;
 
 interface GradientButtonProps {
   title: string;
@@ -38,7 +36,7 @@ export default function GradientButton(props: GradientButtonProps) {
           {props.title}
         </Text>
         {props.icon && (
-          <Icon name={props.icon} size={width * 0.1} color={props.titleColor} />
+          <Icon name={props.icon} size={32} color={props.titleColor} />
         )}
       </LinearGradient>
     </TouchableOpacity>
@@ -46,15 +44,15 @@ export default function GradientButton(props: GradientButtonProps) {
 }
 
 const styles = StyleSheet.create({
-  button: {},
+  button: {height: 80},
   gradient: {
-    paddingVertical: width * 0.04,
-    paddingHorizontal: width * 0.08,
-    borderRadius: width,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 1000,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: width * 0.05,
+    gap: 16,
   },
-  title: {fontSize: width * 0.075},
+  title: {fontSize: 32},
 });

@@ -4,21 +4,27 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
-import {Language, ThemeName} from '../constants/interfaces';
+import {Language, ThemeName, UserData} from '../constants/interfaces';
 import {colors} from '../constants/colors';
 import GradientButton from '../components/customs/GradientButton';
 import QuoteBlock from '../components/screenComponents/home/QuoteBlock';
 import {rules} from '../constants/rules';
 import {text} from '../constants/text';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux';
+import Icon from '../components/icons/Icon';
+import ButtonWithIcon from '../components/global/ButtonWithIcon';
 
 const width = Dimensions.get('screen').width;
 
 export default function HomeScreen({navigation}: any) {
-  const theme: ThemeName = 'olive';
-  const language: Language = 'UA';
+  const userData: UserData = useSelector((state: RootState) => state.userData);
+  const theme: ThemeName = userData.theme;
+  const language: Language = userData.language;
 
   return (
     <SafeAreaView
@@ -30,6 +36,14 @@ export default function HomeScreen({navigation}: any) {
       <View style={styles.contentBlock}>
         <QuoteBlock theme={theme} language={language} />
       </View>
+      <ButtonWithIcon
+        title={text[language].Settings}
+        icon="settings"
+        theme={theme}
+        action={() => {
+          navigation.navigate('SettingsScreen');
+        }}
+      />
       <View style={styles.contentBlock}>
         <GradientButton
           title={text[language].Play}
@@ -51,10 +65,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: width * 0.05,
+    paddingTop: 100,
+    paddingBottom: 16,
   },
   contentBlock: {
-    width: width * rules.widthNumber,
+    width: '92%',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
