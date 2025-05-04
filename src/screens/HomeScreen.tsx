@@ -53,7 +53,7 @@ export default function HomeScreen({navigation}: any) {
           onPress={() => {
             navigation.navigate('NewGame');
           }}
-          cardStyle={{width: '100%', borderRadius: width * 0.04}}
+          cardStyle={{width: '100%', borderRadius: 16}}
         />
       </View>
     </SafeAreaView>

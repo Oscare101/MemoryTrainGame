@@ -1,4 +1,4 @@
-import {Dimensions, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {ThemeName} from '../../constants/interfaces';
@@ -6,8 +6,6 @@ import MainNavigation from '../navigation/MainNavigation';
 import Toast from 'react-native-toast-message';
 import {Provider} from 'react-redux';
 import {store} from '../../redux/store';
-
-const width = Dimensions.get('screen').width;
 
 export default function AppComponent() {
   const theme: ThemeName = 'Olive';
@@ -17,15 +15,15 @@ export default function AppComponent() {
         style={{
           width: '92%',
           backgroundColor: '#000',
-          padding: width * 0.04,
+          padding: 16,
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          borderRadius: width * 0.015,
+          borderRadius: 8,
         }}>
         <Text
           style={{
-            fontSize: width * 0.042,
+            fontSize: 16,
             color: '#fff',
             textAlign: 'left',
           }}>

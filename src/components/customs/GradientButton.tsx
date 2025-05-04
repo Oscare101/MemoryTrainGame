@@ -44,9 +44,9 @@ export default function GradientButton(props: GradientButtonProps) {
 }
 
 const styles = StyleSheet.create({
-  button: {height: 80},
+  button: {height: 64},
   gradient: {
-    paddingVertical: 16,
+    height: 64,
     paddingHorizontal: 32,
     borderRadius: 1000,
     flexDirection: 'row',

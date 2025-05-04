@@ -2,6 +2,9 @@ import {
   BackHandler,
   Dimensions,
   FlatList,
+  InteractionManager,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -18,6 +21,7 @@ import {text} from '../constants/text';
 import TimeBlock from '../components/screenComponents/check/TimeBlock';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux';
+import GameBottomBlock from '../components/screenComponents/game/GameBottomBlock';
 
 const {width, height} = Dimensions.get('screen');
 const shortScreen = height / width < 1.8;
@@ -33,6 +37,7 @@ export default function CheckScreen({navigation, route}: any) {
     Array(route.params.words.length).fill(''),
   );
   const inputRefs = useRef<TextInput[]>([]);
+  const flatListRef = useRef<FlatList>(null);
 
   const time = route.params.finish - route.params.start;
 
@@ -86,8 +91,17 @@ export default function CheckScreen({navigation, route}: any) {
             item.index === wordsInputs.length - 1 ? 'done' : 'next'
           } // 'done' on last input
           onSubmitEditing={() => {
-            if (item.index < wordsInputs.length - 1) {
-              inputRefs.current[item.index + 1]?.focus(); // Focus next input
+            const nextIndex = item.index + 1;
+            if (nextIndex < wordsInputs.length) {
+              flatListRef.current?.scrollToIndex({
+                index: nextIndex,
+                animated: true,
+                viewPosition: 0.5, // optional: scrolls the item to middle
+              });
+
+              InteractionManager.runAfterInteractions(() => {
+                inputRefs.current[nextIndex]?.focus();
+              });
             }
           }}
         />
@@ -124,47 +138,57 @@ export default function CheckScreen({navigation, route}: any) {
   }, []);
 
   return (
-    <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
-      <Header
-        theme={theme}
-        icon={'close'}
-        action={() => {
-          setModal(true);
-        }}
-      />
-      <View style={{flex: 1}}>
-        <FlatList
-          style={{width: width}}
-          data={route.params.words}
-          renderItem={RenderItem}
-          ListFooterComponent={() => <View style={{height: width * 0.2}} />}
+    <KeyboardAvoidingView
+      style={{flex: 1}}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <View style={[styles.container, {backgroundColor: colors[theme].bg[0]}]}>
+        <Header
+          theme={theme}
+          icon={'close'}
+          action={() => {
+            setModal(true);
+          }}
+        />
+        <View style={{flex: 1}}>
+          <FlatList
+            ref={flatListRef}
+            style={{width: width}}
+            data={route.params.words}
+            renderItem={RenderItem}
+            ListFooterComponent={() => <View style={{height: width * 0.2}} />}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+
+        <GameBottomBlock theme={theme}>
+          <CheckBlock
+            theme={theme}
+            language={language}
+            finishAvailable={true}
+            buttonTitle={text[language].Finish}
+            comment={text[language].IfYouEnteredWords}
+            onCheck={onCheck}
+            shortScreen={shortScreen}
+          />
+          <View style={{flex: 1}} />
+          <TimeBlock time={time} language={language} theme={theme} />
+        </GameBottomBlock>
+        <CloseGameModal
+          theme={theme}
+          language={language}
+          visible={modal}
+          onClose={closeGameModal}
+          onSubmit={submitCloseGame}
+        />
+        <ConfirmCheckModal
+          theme={theme}
+          language={language}
+          visible={confirm}
+          onClose={closeConfirmModal}
+          onSubmit={submitConfirmGame}
         />
       </View>
-      <CheckBlock
-        theme={theme}
-        language={language}
-        finishAvailable={true}
-        buttonTitle={text[language].Finish}
-        comment={text[language].IfYouEnteredWords}
-        onCheck={onCheck}
-        shortScreen={shortScreen}
-      />
-      <TimeBlock time={time} language={language} theme={theme} />
-      <CloseGameModal
-        theme={theme}
-        language={language}
-        visible={modal}
-        onClose={closeGameModal}
-        onSubmit={submitCloseGame}
-      />
-      <ConfirmCheckModal
-        theme={theme}
-        language={language}
-        visible={confirm}
-        onClose={closeConfirmModal}
-        onSubmit={submitConfirmGame}
-      />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

@@ -19,6 +19,9 @@ import {rules} from '../constants/rules';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux';
 import GameBottomBlock from '../components/screenComponents/game/GameBottomBlock';
+import CardCountBlock from '../components/screenComponents/game/CardCountBlock';
+import GradientButton from '../components/customs/GradientButton';
+import Line from '../components/screenComponents/game/Line';
 
 const {width, height} = Dimensions.get('screen');
 const shortScreen = height / width < 1.8;
@@ -104,67 +107,52 @@ export default function GameScreen({navigation, route}: any) {
           </Text>
         </View>
       )}
+      {!cardsShow && (
+        <CardNavigation
+          theme={theme}
+          wordsAmount={route.params.words.length}
+          type={route.params.type}
+          wordIndex={wordIndex}
+          setWordIndex={(i: number) => {
+            if (i === route.params.words.length - 1) {
+              setFinishAvailable(true);
+            }
+            setWordIndex(i);
+          }}
+          back={route.params.type === 'easy'}
+        />
+      )}
 
-      <CheckBlock
-        theme={theme}
-        language={language}
-        finishAvailable={finishAvailable}
-        buttonTitle={text[language].Check}
-        comment={text[language].IfYouReadyToCheck}
-        onCheck={() => {
-          navigation.navigate('CheckScreen', {
-            start: startTime,
-            finish: new Date().getTime(),
-            words:
-              route.params.type === 'stamina'
-                ? route.params.words.slice(0, wordIndex + 1)
-                : route.params.words,
-            type: route.params.type,
-          });
-        }}
-        shortScreen={shortScreen}
-      />
-      <View
-        style={{
-          width: width * rules.widthNumber,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: width * 0.05,
-          height: width * 0.15,
-        }}>
-        {cardsShow ? (
-          <></>
-        ) : (
-          <CardNavigation
+      <GameBottomBlock theme={theme}>
+        <CheckBlock
+          theme={theme}
+          language={language}
+          finishAvailable={finishAvailable}
+          buttonTitle={text[language].Finish}
+          comment={text[language].IfYouReadyToCheck}
+          onCheck={() => {
+            navigation.navigate('CheckScreen', {
+              start: startTime,
+              finish: new Date().getTime(),
+              words:
+                route.params.type === 'stamina'
+                  ? route.params.words.slice(0, wordIndex + 1)
+                  : route.params.words,
+              type: route.params.type,
+            });
+          }}
+          shortScreen={shortScreen}
+        />
+        <View style={{flex: 1}} />
+        {!cardsShow && (
+          <CardCountBlock
             theme={theme}
-            words={route.params.words}
+            wordsAmount={route.params.words.length}
             type={route.params.type}
-            wordIndex={wordIndex}
-            setWordIndex={(i: number) => {
-              if (i === route.params.words.length - 1) {
-                setFinishAvailable(true);
-              }
-              setWordIndex(i);
-            }}
-            back={route.params.type === 'easy'}
+            wordNumber={wordIndex + 1}
           />
         )}
-      </View>
-      {/* <GameBottomBlock
-        theme={theme}
-        mainButton={{
-          title: text[language].Check,
-          action: () => {
-            console.log('a');
-          },
-          active: true,
-        }}
-        language={language}
-        width={width}
-        wordNumber={wordIndex + 1}
-        wordsAmount={route.params.words.length}
-      /> */}
+      </GameBottomBlock>
 
       <CloseGameModal
         theme={theme}

@@ -1,10 +1,8 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {colors} from '../../../constants/colors';
 import GradientButton from '../../customs/GradientButton';
 import {Language, ThemeName} from '../../../constants/interfaces';
-
-const width = Dimensions.get('screen').width;
 
 interface CheckBlockProps {
   theme: ThemeName;
@@ -18,14 +16,7 @@ interface CheckBlockProps {
 
 function CheckBlock(props: CheckBlockProps) {
   return (
-    <View
-      style={[
-        styles.block,
-        {
-          borderColor: colors[props.theme].main,
-          paddingTop: props.shortScreen ? width * 0.05 : width * 0.1,
-        },
-      ]}>
+    <View style={styles.block}>
       <GradientButton
         title={props.buttonTitle}
         bgColors={
@@ -38,7 +29,6 @@ function CheckBlock(props: CheckBlockProps) {
             ? colors[props.theme].buttonTitleDisabled
             : colors[props.theme].buttonTitleActive
         }
-        cardStyle={{width: width * 0.6}}
         onPress={props.onCheck}
         disables={!props.finishAvailable}
       />
@@ -47,8 +37,7 @@ function CheckBlock(props: CheckBlockProps) {
           styles.comment,
           {
             color: colors[props.theme].comment,
-            marginBottom: props.shortScreen ? width * 0.05 : width * 0.1,
-            marginTop: props.shortScreen ? width * 0.02 : width * 0.05,
+            marginTop: 16,
           },
         ]}>
         {props.comment}
@@ -59,15 +48,14 @@ function CheckBlock(props: CheckBlockProps) {
 
 const styles = StyleSheet.create({
   block: {
-    borderTopWidth: 1,
-    width: width * 0.8,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    width: '100%',
   },
   comment: {
-    fontSize: width * 0.042,
-    width: width * 0.6,
+    fontSize: 16,
+    width: '70%',
     textAlign: 'center',
   },
 });

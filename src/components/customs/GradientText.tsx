@@ -1,7 +1,4 @@
 import React from 'react';
-// import {Text} from 'react-native';
-import MaskedView from '@react-native-masked-view/masked-view';
-// import LinearGradient from 'react-native-linear-gradient';
 import {Defs, Stop, Svg, Text, LinearGradient} from 'react-native-svg';
 import {Dimensions} from 'react-native';
 

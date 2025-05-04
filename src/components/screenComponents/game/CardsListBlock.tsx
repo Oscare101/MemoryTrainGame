@@ -1,18 +1,8 @@
-import {
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {ThemeName} from '../../../constants/interfaces';
-import {rules} from '../../../constants/rules';
 import {colors} from '../../../constants/colors';
 import Icon from '../../icons/Icon';
-
-const width = Dimensions.get('screen').width;
 
 interface CardListBlock {
   wordsList: string[];
@@ -24,13 +14,14 @@ export default function CardsListBlock(props: CardListBlock) {
   function RenderItem(item: any) {
     return (
       <View style={styles.item}>
-        <Text style={{fontSize: width * 0.06, color: colors[props.theme].main}}>
+        <Text style={{fontSize: 24, color: colors[props.theme].main}}>
           {item.index + 1}
         </Text>
         <Text
           style={{
-            fontSize: width * 0.06,
+            fontSize: 24,
             color: colors[props.theme].main,
+            flex: 1,
           }}>
           {item.item.charAt(0).toUpperCase() + item.item.slice(1)}
         </Text>
@@ -38,11 +29,7 @@ export default function CardsListBlock(props: CardListBlock) {
           activeOpacity={0.8}
           style={styles.button}
           onPress={() => props.onOpenCard(item.index)}>
-          <Icon
-            name="open"
-            color={colors[props.theme].main}
-            size={width * 0.07}
-          />
+          <Icon name="open" color={colors[props.theme].main} size={24} />
         </TouchableOpacity>
       </View>
     );
@@ -51,9 +38,10 @@ export default function CardsListBlock(props: CardListBlock) {
   return (
     <View style={styles.container}>
       <FlatList
-        style={{width: width}}
+        style={{width: '92%'}}
         data={props.wordsList}
         renderItem={RenderItem}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
@@ -64,15 +52,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   item: {
-    width: width * 0.8,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: width * 0.1,
+    height: 48,
     alignSelf: 'center',
+    paddingHorizontal: 32,
+    gap: 16,
   },
   button: {
-    height: width * 0.1,
+    height: 48,
     aspectRatio: 1,
     alignItems: 'center',
     justifyContent: 'center',

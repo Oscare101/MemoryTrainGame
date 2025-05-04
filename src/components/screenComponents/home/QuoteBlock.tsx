@@ -1,10 +1,8 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Language, ThemeName} from '../../../constants/interfaces';
 import {text} from '../../../constants/text';
 import {colors} from '../../../constants/colors';
-
-const width = Dimensions.get('screen').width;
 
 export default function QuoteBlock(props: {
   theme: ThemeName;
@@ -28,16 +26,16 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
     width: '100%',
-    gap: width * 0.03,
+    gap: 8,
   },
   quote: {
-    fontSize: width * 0.042,
+    fontSize: 20,
     textAlign: 'left',
-    paddingRight: width * 0.1,
+    width: '100%',
     fontStyle: 'italic',
   },
   author: {
-    fontSize: width * 0.045,
+    fontSize: 20,
     textAlign: 'right',
     fontStyle: 'italic',
     fontWeight: 300,

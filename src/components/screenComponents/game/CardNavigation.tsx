@@ -9,13 +9,10 @@ import React from 'react';
 import {GameTypeInterface, ThemeName} from '../../../constants/interfaces';
 import Icon from '../../icons/Icon';
 import {colors} from '../../../constants/colors';
-import {rules} from '../../../constants/rules';
-
-const width = Dimensions.get('screen').width;
 
 interface CardNavigationProps {
   theme: ThemeName;
-  words: string[];
+  wordsAmount: number;
   type: GameTypeInterface;
   wordIndex: number;
   setWordIndex: any;
@@ -24,7 +21,7 @@ interface CardNavigationProps {
 
 export default function CardNavigation(props: CardNavigationProps) {
   return (
-    <>
+    <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.8}
@@ -36,7 +33,7 @@ export default function CardNavigation(props: CardNavigationProps) {
         disabled={!props.back || props.wordIndex === 0}>
         <Icon
           name="arrowLeft"
-          size={width * 0.1}
+          size={48}
           color={
             props.wordIndex === 0 || !props.back
               ? '#00000000'
@@ -44,79 +41,42 @@ export default function CardNavigation(props: CardNavigationProps) {
           }
         />
       </TouchableOpacity>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <View>
-          <Text
-            style={{
-              fontSize: width * 0.075,
-              color: colors[props.theme].comment,
-              marginRight: width * 0.02,
-            }}>
-            {props.wordIndex + 1}
-          </Text>
-        </View>
-        <Text
-          style={{
-            fontSize: width * 0.075,
-            color: colors[props.theme].comment,
-            marginRight: width * 0.01,
-          }}>
-          /
-        </Text>
-        <View>
-          {props.type === 'stamina' ? (
-            <Icon
-              name="infinity"
-              color={colors[props.theme].comment}
-              size={width * 0.12}
-            />
-          ) : (
-            <Text
-              style={{
-                fontSize: width * 0.075,
-                color: colors[props.theme].comment,
-                marginLeft: width * 0.01,
-              }}>
-              {props.words.length}
-            </Text>
-          )}
-        </View>
-      </View>
 
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.8}
         onPress={() => {
-          if (props.wordIndex < props.words.length - 1) {
+          if (props.wordIndex < props.wordsAmount - 1) {
             props.setWordIndex(props.wordIndex + 1);
           }
         }}
-        disabled={props.wordIndex === props.words.length - 1}>
+        disabled={props.wordIndex === props.wordsAmount - 1}>
         <Icon
           name="arrowRight"
-          size={width * 0.1}
+          size={48}
           color={
-            props.wordIndex === props.words.length - 1
+            props.wordIndex === props.wordsAmount - 1
               ? '#00000000'
               : colors[props.theme].main
           }
         />
       </TouchableOpacity>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: '92%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   button: {
-    width: width * 0.15,
     alignItems: 'center',
     justifyContent: 'center',
     aspectRatio: 1,
+    padding: 16,
     // TODO maybe make them bigger
   },
 });

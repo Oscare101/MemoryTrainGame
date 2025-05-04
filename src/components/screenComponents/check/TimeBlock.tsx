@@ -1,11 +1,8 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {rules} from '../../../constants/rules';
 import {colors} from '../../../constants/colors';
 import {text} from '../../../constants/text';
 import {Language, ThemeName} from '../../../constants/interfaces';
-
-const width = Dimensions.get('screen').width;
 
 function TimeFormat(ms: number, language: Language) {
   const hours = Math.floor(ms / 3600000);
@@ -48,19 +45,17 @@ function TimeBlock({
 
 const styles = StyleSheet.create({
   timeBlock: {
-    width: width * rules.widthNumber,
+    width: '100%',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: width * 0.05,
-    height: width * 0.15,
   },
   timeTitle: {
-    fontSize: width * 0.075,
+    fontSize: 32,
     color: colors['Olive'].main,
   },
   timeComment: {
-    fontSize: width * 0.042,
+    fontSize: 16,
   },
 });
 

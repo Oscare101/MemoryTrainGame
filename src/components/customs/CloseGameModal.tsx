@@ -13,9 +13,6 @@ import {colors} from '../../constants/colors';
 import {rules} from '../../constants/rules';
 import {text} from '../../constants/text';
 import GradientButton from './GradientButton';
-import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-
-const width = Dimensions.get('window').width;
 
 interface CloseModalProps {
   visible: boolean;
@@ -50,7 +47,7 @@ function CloseGameModal(props: CloseModalProps) {
         <Pressable
           style={{
             flex: 1,
-            width: width,
+            width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
           }}
@@ -62,32 +59,28 @@ function CloseGameModal(props: CloseModalProps) {
             ]}>
             <Text
               style={{
-                fontSize: width * 0.075,
+                fontSize: 24,
                 color: colors[props.theme].main,
               }}>
               {text[props.language].CloseGameWarningTitle}
             </Text>
             <Text
               style={{
-                fontSize: width * 0.042,
+                fontSize: 16,
                 color: colors[props.theme].comment,
+                width: '90%',
+                textAlign: 'center',
               }}>
               {text[props.language].CloseGameWarning}
             </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}>
+            <View style={styles.buttonsRow}>
               <GradientButton
                 title={text[props.language].goBack}
                 bgColors={colors[props.theme].buttonActive}
                 titleColor={colors[props.theme].buttonTitleActive}
                 onPress={props.onClose}
                 cardStyle={styles.buttonStyle}
-                titleStyle={{fontSize: width * 0.042}}
+                titleStyle={{fontSize: 20}}
               />
               <GradientButton
                 title={text[props.language].Stop}
@@ -95,7 +88,7 @@ function CloseGameModal(props: CloseModalProps) {
                 titleColor={colors[props.theme].main}
                 onPress={props.onSubmit}
                 cardStyle={styles.buttonStyle}
-                titleStyle={{fontSize: width * 0.042}}
+                titleStyle={{fontSize: 20}}
               />
             </View>
           </Pressable>
@@ -119,17 +112,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   modalView: {
-    width: width * rules.widthNumber,
-    padding: width * 0.05,
-    borderRadius: width * 0.07,
+    width: '92%',
+    padding: 16,
+    paddingTop: 24,
+    borderRadius: 16,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: width * 0.07,
+    gap: 16,
+  },
+  buttonsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   buttonStyle: {
-    borderRadius: width * 0.02,
-    width: (width * rules.widthNumber - width * 0.05 * 2 - width * 0.02) / 2,
+    borderRadius: 8,
+    flex: 1,
     paddingHorizontal: 0,
   },
 });

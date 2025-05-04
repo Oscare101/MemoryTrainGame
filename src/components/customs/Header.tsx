@@ -1,10 +1,4 @@
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {IconName, ThemeName} from '../../constants/interfaces';
 import Icon from '../icons/Icon';
@@ -19,8 +13,6 @@ interface HeaderProps {
   secondaryAction?: any;
 }
 
-const width = Dimensions.get('screen').width;
-
 export default function Header(props: HeaderProps) {
   return (
     <View style={styles.header}>
@@ -28,11 +20,7 @@ export default function Header(props: HeaderProps) {
         activeOpacity={0.8}
         onPress={props.action}
         style={styles.button}>
-        <Icon
-          name={props.icon}
-          size={width * 0.1}
-          color={colors[props.theme].main}
-        />
+        <Icon name={props.icon} size={48} color={colors[props.theme].main} />
       </TouchableOpacity>
       {props.secondaryTitle && props.secondary ? (
         <TouchableOpacity
@@ -41,7 +29,7 @@ export default function Header(props: HeaderProps) {
           onPress={props.secondaryAction}>
           <Text
             style={{
-              fontSize: width * 0.075,
+              fontSize: 32,
               color: colors[props.theme].main,
             }}>
             {props.secondaryTitle}
@@ -56,13 +44,13 @@ export default function Header(props: HeaderProps) {
 
 const styles = StyleSheet.create({
   header: {
-    width: width,
+    width: '100%',
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
   button: {
-    padding: width * 0.03,
+    padding: 16,
   },
 });
